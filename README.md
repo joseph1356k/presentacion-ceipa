@@ -1,5 +1,9 @@
 # CEIPA × Miracle — "Cómo la IA va a humanizar la medicina de nuevo"
 
+**En vivo:** https://presentacion-ceipa.vercel.app
+
+Cada `git push` a `main` la vuelve a desplegar automáticamente.
+
 Presentación HTML interactiva de **23 slides** para una charla de 30 minutos:
 **~15 min de slides + ~10 min de demos en vivo + ~5 min de preguntas.**
 
