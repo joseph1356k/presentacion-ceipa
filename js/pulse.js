@@ -148,9 +148,11 @@
       'M-60,620 C260,620 400,606 540,600 L1380,596 C1560,594 1740,560 1980,540'
     },
 
-    /* S11 — estratos: la línea desciende tejiendo entre capas */
-    estratos: { o:1, d:
-      'M-60,300 C260,300 420,352 620,368 C820,384 880,540 1040,568 C1200,596 1300,724 1500,752 C1660,774 1820,778 1980,780'
+    /* S15 — la línea trepa y se instala DENTRO de la banda superior (bajo su
+       etiqueta). No se mueve: son las capas las que se reordenan a su
+       alrededor, así que al final queda atravesando «intención». */
+    capaAlta: { o:1, d:
+      'M-60,720 C120,720 220,388 400,386 L1240,386 C1520,382 1740,360 1980,344'
     },
 
     /* S12 — convergencia total: el punto */

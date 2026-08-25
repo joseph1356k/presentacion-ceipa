@@ -313,7 +313,7 @@
   /* ---------- S15 · Lo que acabamos de ver ---------- */
   DECK.register({
     id:'s15', theme:'deep',
-    pulse:{ b0:{ state:'estratos', dur:1.35, ease:'power2.inOut' } },
+    pulse:{ b0:{ state:'capaAlta', dur:1.35, ease:'power2.inOut' } },
     build(ctx){
       const q = ctx.q;
       const pos = [0, 222, 444];                 /* interfaz, datos, intención */

@@ -97,6 +97,13 @@
         .addLabel('b0')
         .to(q('.stage3'), { autoAlpha:1, y:0, duration:.65,
                             stagger:.18, ease:'power3.out' })
+        /* un punto sube la escalera despacio: el recorrido de hoy a la visión */
+        .call(()=>ctx.startLoop('walk', ()=>{
+          gsap.set('#s19walk', { autoAlpha:1 });
+          return gsap.to(['#s19dot','#s19halo'], {
+            motionPath:{ path:'#s19path', align:'#s19path', alignOrigin:[.5,.5] },
+            duration:17, ease:'none', repeat:-1 });
+        }))
         .addLabel('b1');
       return tl;
     }

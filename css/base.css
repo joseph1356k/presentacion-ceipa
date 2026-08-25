@@ -58,6 +58,8 @@ body{
 #s15branches path{ stroke:var(--line); stroke-width:2.6; fill:none; stroke-linecap:round; }
 #s05fan path{ stroke:var(--line); stroke-width:2.4; fill:none; stroke-linecap:round; }
 #s09links line{ stroke:var(--line); stroke-width:2; opacity:.55; }
+#s19dot{ fill:var(--line); }
+#s19halo{ fill:var(--line); opacity:.2; }
 
 /* Punto de estación sobre la línea */
 .ldot{

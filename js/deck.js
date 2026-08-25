@@ -108,7 +108,7 @@
      un latido o un viajero a medio camino no debe filtrarse a la slide siguiente. */
   function resetShared(){
     gsap.set(['#holdOverlay','#holdTag'], { autoAlpha:0 });
-    gsap.killTweensOf(['#blipG','#orbitG','#particles circle']);
+    gsap.killTweensOf(['#blipG','#orbitG','#particles circle','#s19dot','#s19halo']);
     gsap.set('#pulseSvg .deco', { autoAlpha:0 });
     gsap.set('#blipG', { autoAlpha:0, attr:{ transform:'translate(-200,640)' } });
     gsap.set('#orbitG', { rotation:0, svgOrigin:'960 600' });
