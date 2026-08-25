@@ -55,18 +55,12 @@
 }
 #s03 .stat27 .s{ margin-top:10px; font:400 26px/1.4 var(--f-text); color:var(--soft); }
 
-/* ---- Derecha · la escena ---- */
-#s03 .human{ left:880px; top:206px; width:520px; height:455px; }
-#s03 .human svg{ stroke-width:4.2; }
-#s03 .hglow{
-  position:absolute; inset:-90px;
-  background:radial-gradient(closest-side, rgba(255,190,110,.26), transparent 74%);
-}
-/* La pila entra desde fuera del cuadro y empuja a la consulta.
+/* ---- Derecha · la interfaz ----
+   La pila entra desde fuera del cuadro y ocupa el territorio derecho.
    scale() sobre el contenedor: GSAP solo anima los .scr hijos. */
 #s03 .screens{
-  right:-170px; top:150px; width:1120px; height:700px;
-  transform:scale(.78); transform-origin:100% 0;
+  right:-150px; top:132px; width:1120px; height:700px;
+  transform:scale(.9); transform-origin:100% 0;
 }
 #s03 .scr{
   position:absolute; border-radius:14px;
