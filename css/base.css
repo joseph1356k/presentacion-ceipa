@@ -108,24 +108,26 @@ body{
 
 /* ---- HUD: progreso por actos + contador ---- */
 .hud{ position:absolute; z-index:8; pointer-events:none; }
+/* A ras del borde inferior y de lado a lado: se lee como la barra de
+   progreso de un reproductor. Los 3 tramos = los 3 actos. */
 .hud-progress{
-  left:50%; bottom:34px; transform:translateX(-50%);
-  display:flex; gap:18px; width:760px;
+  left:0; right:0; bottom:0;
+  display:flex; gap:3px; width:100%;
 }
 .hud-progress .seg{
-  height:3px; border-radius:2px; background:color-mix(in srgb, var(--ink) 14%, transparent);
+  height:4px; background:color-mix(in srgb, var(--ink) 13%, transparent);
   position:relative; overflow:hidden;
 }
 .hud-progress .seg i{
   position:absolute; inset:0; transform-origin:left center; transform:scaleX(0);
-  background:color-mix(in srgb, var(--ink) 52%, transparent); border-radius:2px;
+  background:color-mix(in srgb, var(--ink) 55%, transparent);
   transition:transform .5s cubic-bezier(.22,.61,.36,1);
 }
 .hud-progress .seg:nth-child(1){ flex:7; }
 .hud-progress .seg:nth-child(2){ flex:8; }
 .hud-progress .seg:nth-child(3){ flex:8; }
 .hud-count{
-  right:44px; bottom:26px;
+  right:44px; bottom:24px;   /* despejado por encima de la barra a ras */
   font:500 15px/1 var(--f-text); letter-spacing:.14em;
   color:color-mix(in srgb, var(--ink) 44%, transparent);
   font-variant-numeric:tabular-nums;
