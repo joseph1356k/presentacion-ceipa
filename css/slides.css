@@ -58,8 +58,8 @@
   position:absolute; left:9%; height:8px; border-radius:4px;
   background:color-mix(in srgb, var(--ink) 13%, transparent);
 }
-#s04 .wrap{ left:160px; top:880px; max-width:1720px; }
-#s04 .l1{ font-size:56px; }
+#s04 .wrap{ left:160px; top:834px; max-width:1720px; }
+#s04 .l1{ font-size:56px; line-height:1.25; }
 #s04 .l1 b{ color:var(--acc); }
 
 /* ============ S05 · El costo se reparte ============ */
@@ -147,7 +147,7 @@
 
 /* ============ S11 · De la conversación a la acción ============ */
 #s11 .wrap{ left:160px; top:180px; }
-#s11 .l1{ font-size:88px; }
+#s11 .l1{ font-size:68px; line-height:1.22; }
 #s11 .pipe{ left:0; top:0; width:100%; height:100%; }
 #s11 .pchip{ transform:translateX(-50%); text-align:center; }
 #s11 .pchip .lbl{ font:600 25px/1.25 var(--f-text); color:var(--ink); }
@@ -262,7 +262,7 @@
 
 /* ============ S18 · Ciclo ============ */
 #s18 .wrap{ left:160px; top:150px; }
-#s18 .l1{ font-size:84px; max-width:820px; }
+#s18 .l1{ font-size:72px; max-width:820px; line-height:1.2; }
 #s18 .lp{ position:absolute; transform:translate(-50%,-50%); text-align:center;
   font:600 24px/1.25 var(--f-text); color:var(--ink); white-space:nowrap; }
 
@@ -286,7 +286,7 @@
 #s20 .bl.hot{ color:var(--gold); }
 
 /* ============ S21 · La interfaz ============ */
-#s21 .l1{ left:0; right:0; top:126px; text-align:center; font-size:58px; }
+#s21 .l1{ left:0; right:0; top:126px; text-align:center; font-size:56px; }
 #s21 .l2{ left:0; right:0; top:936px; text-align:center; font-size:42px; color:var(--soft); font-family:var(--f-display); font-weight:500; }
 #s21 .l2 b{ color:var(--gold); font-weight:600; }
 #s21 .eras{ left:480px; top:284px; width:960px; height:600px; }
@@ -307,8 +307,8 @@
 
 /* ============ S22 · Cierre ============ */
 #s22 .wrap{ left:0; right:0; top:296px; text-align:center; }
-#s22 .l1{ font-size:76px; }
-#s22 .l2{ font-size:76px; margin-top:10px; }
+#s22 .l1{ font-size:68px; }
+#s22 .l2{ font-size:68px; margin-top:12px; }
 #s22 .l2 .serif-i{ color:var(--gold); font-size:1.06em; }
 
 /* ============ S23 · Marca final ============ */
