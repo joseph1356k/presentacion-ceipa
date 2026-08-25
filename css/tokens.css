@@ -1,0 +1,64 @@
+/* ============================================================
+   TOKENS — fuentes, temas por acto, escala tipográfica
+   Los valores de tema (--bg0, --ink, --line, …) los anima deck.js
+   en los límites de capítulo. No poner fondos por slide.
+   ============================================================ */
+
+/* ---- Fuentes locales (cero red en runtime) ---- */
+@font-face{
+  font-family:'Space Grotesk';
+  src:url('../assets/fonts/SpaceGrotesk-var.woff2') format('woff2');
+  font-weight:300 700;
+  font-display:block;
+}
+@font-face{
+  font-family:'Inter';
+  src:url('../assets/fonts/Inter-var.woff2') format('woff2');
+  font-weight:100 900;
+  font-display:block;
+}
+@font-face{
+  font-family:'Instrument Serif';
+  src:url('../assets/fonts/InstrumentSerif-Regular.woff2') format('woff2');
+  font-weight:400;
+  font-style:normal;
+  font-display:block;
+}
+@font-face{
+  font-family:'Instrument Serif';
+  src:url('../assets/fonts/InstrumentSerif-Italic.woff2') format('woff2');
+  font-weight:400;
+  font-style:italic;
+  font-display:block;
+}
+
+:root{
+  /* ---- Tema inicial: ACTO I — Medicina (luz clínica) ---- */
+  --bg0:#fdfeff;            /* centro del gradiente de fondo */
+  --bg1:#e7eff7;            /* borde del gradiente de fondo  */
+  --ink:#082659;            /* texto principal               */
+  --soft:#5a708f;           /* texto secundario              */
+  --line:#14b3d6;           /* color del hilo (cyan→dorado)  */
+  --acc:#2f6bd8;            /* acento UI                     */
+  --glass:rgba(8,38,89,.05);      /* superficies vidrio       */
+  --glass-br:rgba(8,38,89,.14);   /* bordes vidrio            */
+
+  /* ---- Constantes que no cambian con el tema ---- */
+  --cyan:#22d3ee;           /* residuo médico (latido final) */
+  --gold:#d4a954;           /* visión                        */
+  --f-display:'Space Grotesk',system-ui,sans-serif;
+  --f-text:'Inter',system-ui,sans-serif;
+  --f-serif:'Instrument Serif',Georgia,serif;
+}
+
+/* ---- Escala tipográfica (px de diseño: stage fijo 1920×1080) ---- */
+.t-display{ font:700 118px/1.08 var(--f-display); letter-spacing:-.02em; color:var(--ink); }
+.t-big    { font:700 96px/1.1  var(--f-display); letter-spacing:-.018em; color:var(--ink); }
+.t-med    { font:700 72px/1.14 var(--f-display); letter-spacing:-.014em; color:var(--ink); }
+.t-sub    { font:400 30px/1.5  var(--f-text);    color:var(--soft); }
+.t-kicker { font:600 19px/1    var(--f-text);    letter-spacing:.24em; text-transform:uppercase; color:var(--acc); }
+.t-label  { font:500 21px/1.3  var(--f-text);    color:var(--soft); }
+.t-chip   { font:500 24px/1.3  var(--f-text);    color:var(--ink); }
+
+/* El gesto humanista: serif itálica, exactamente dos usos en toda la charla */
+.serif-i{ font-family:var(--f-serif); font-style:italic; font-weight:400; letter-spacing:0; }
