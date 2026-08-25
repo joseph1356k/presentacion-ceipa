@@ -66,6 +66,7 @@
       const q = ctx.q;
       gsap.set(q('.l1'), { y:40, autoAlpha:0 });
       gsap.set(q('.lp'), { autoAlpha:0, scale:.9 });
+      gsap.set(q('.sub2'), { autoAlpha:0, y:24 });
       gsap.set('#orbitDot', { autoAlpha:0 });
       const tl = gsap.timeline({ paused:true });
       tl.to(q('.l1'), { y:0, autoAlpha:1, duration:.85, ease:'power3.out' })
@@ -79,6 +80,8 @@
           return gsap.to('#orbitG', { rotation:360, svgOrigin:'960 600',
                                       duration:9, ease:'none', repeat:-1 });
         }))
+        /* la estrategia de startup, dicha una sola vez */
+        .to(q('.sub2'), { autoAlpha:1, y:0, duration:.7, ease:'power3.out' }, '-=.1')
         .addLabel('b1');
       return tl;
     }
@@ -141,22 +144,32 @@
     pulse:{ b0:{ state:{ d: PULSE.STATES.horizonte.d, o:0 }, dur:1.1, ease:'power2.inOut' } },
     build(ctx){
       const q = ctx.q;
+      /* DOM: [mouse, dedo, next] — el ejemplo Apple en B1, la pregunta en B2.
+         Separar los beats le da al orador los 45–60 s de desarrollo. */
+      const eras  = q('.era');
+      const apple = [eras[0], eras[1]];
+      const next  = eras[2];
       gsap.set(q('.l1, .l2'), { y:36, autoAlpha:0 });
+      gsap.set(q('.akick'), { y:20, autoAlpha:0 });
       gsap.set(q('.era'), { autoAlpha:0, y:38 });
       gsap.set(q('.era .rule'), { scaleX:0, transformOrigin:'left center' });
       gsap.set(q('.eglow'), { autoAlpha:0, scale:.75, transformOrigin:'center' });
       const tl = gsap.timeline({ paused:true });
       tl.to(q('.l1'), { y:0, autoAlpha:1, duration:.85, ease:'power3.out' })
         .addLabel('b0')
-        /* de izquierda a derecha: el orden cronológico se lee solo */
-        .to(q('.era'), { autoAlpha:1, y:0, duration:.7, stagger:.2, ease:'power3.out' })
-        .to(q('.era .rule'), { scaleX:1, duration:.65, stagger:.2, ease:'power2.out' }, '<.12')
+        .to(q('.akick'), { y:0, autoAlpha:1, duration:.6, ease:'power3.out' })
+        .to(apple, { autoAlpha:1, y:0, duration:.7,
+                     stagger:.22, ease:'power3.out' }, '-=.25')
+        .to([apple[0].querySelector('.rule'), apple[1].querySelector('.rule')],
+            { scaleX:1, duration:.65, stagger:.22, ease:'power2.out' }, '<.12')
         .addLabel('b1')
-        .to(q('.l2'), { y:0, autoAlpha:1, duration:.75, ease:'power3.out' })
+        .to(next, { autoAlpha:1, y:0, duration:.7, ease:'power3.out' })
+        .to(next.querySelector('.rule'), { scaleX:1, duration:.6, ease:'power2.out' }, '<.15')
         .to(q('.eglow'), { autoAlpha:1, scale:1, duration:.9, ease:'power2.out' }, '<')
+        .to(q('.l2'), { y:0, autoAlpha:1, duration:.75, ease:'power3.out' }, '<.2')
         .fromTo(q('.era.next .yr'), { scale:1 },
             { scale:1.1, duration:.45, yoyo:true, repeat:1,
-              ease:'power2.inOut', transformOrigin:'left center' }, '<')
+              ease:'power2.inOut', transformOrigin:'left center' }, '<.3')
         .addLabel('b2');
       return tl;
     }

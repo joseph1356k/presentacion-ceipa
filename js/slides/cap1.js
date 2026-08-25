@@ -46,12 +46,54 @@
     }
   });
 
-  /* ---------- S03 · Fricción ---------- */
+  /* ---------- S03 · El dato (49,2%) ----------
+     La pila de ventanas invade y comprime la consulta; el número
+     cuenta hasta 49,2 mientras la interfaz se come la composición. */
   DECK.register({
     id:'s03', theme:'light',
     pulse:{
-      b0:{ state:'tension', dur:1.1, ease:'power2.inOut' },
-      b2:{ state:'nudo',    dur:1.0, ease:'power3.inOut' }
+      b0:{ state:'pulso',   dur:1.0, ease:'power2.inOut' },
+      b1:{ state:'apagada', dur:1.3, ease:'power2.inOut' }
+    },
+    build(ctx){
+      const q = ctx.q;
+      gsap.set(q('.human'), { autoAlpha:0, x:190, scale:1.08, transformOrigin:'left center' });
+      gsap.set(q('.hglow'), { autoAlpha:1 });
+      gsap.set(q('.scr'),   { autoAlpha:0, x:240, y:24 });
+      gsap.set(q('.stat49'), { autoAlpha:0, y:28 });
+      gsap.set(q('.stat27'), { autoAlpha:0, y:22 });
+      gsap.set(q('.concl'),  { autoAlpha:0, y:24 });
+      gsap.set(q('.fuente'), { autoAlpha:0 });
+      const n49 = q('.stat49 .n')[0], v = { p:0 };
+      n49.textContent = '0%';
+      const tl = gsap.timeline({ paused:true });
+      tl.to(q('.human'), { autoAlpha:1, duration:.9, ease:'power2.out' })
+        .addLabel('b0')
+        /* las ventanas entran y la consulta se comprime */
+        .to(q('.scr'), { autoAlpha:1, x:0, y:0, duration:.55,
+                         stagger:.09, ease:'power3.out' })
+        .to(q('.human'), { x:0, scale:1, duration:1.0, ease:'power2.inOut' }, '<.15')
+        .to(q('.hglow'), { autoAlpha:.55, duration:1 }, '<')
+        .to(q('.stat49'), { autoAlpha:1, y:0, duration:.7, ease:'power3.out' }, '-=.55')
+        .to(v, { p:49.2, duration:1.1, ease:'power2.out',
+                 onUpdate:()=>{ n49.textContent = v.p.toFixed(1).replace('.', ',') + '%'; } }, '<')
+        .addLabel('b1')
+        .to(q('.stat27'), { autoAlpha:1, y:0, duration:.7, ease:'power3.out' })
+        .addLabel('b2')
+        .to(q('.concl'),  { autoAlpha:1, y:0, duration:.75, ease:'power3.out' })
+        .to(q('.fuente'), { autoAlpha:.8, duration:.6 }, '<.25')
+        .addLabel('b3');
+      return tl;
+    }
+  });
+
+  /* ---------- S04 · Una sola persona ----------
+     Los cinco frentes de la consulta tiran de la línea hasta anudarla. */
+  DECK.register({
+    id:'s04', theme:'light',
+    pulse:{
+      b0:{ state:'tension', dur:1.15, ease:'power2.inOut' },
+      b2:{ state:'nudo',    dur:1.0,  ease:'power3.inOut' }
     },
     build(ctx){
       const q = ctx.q;
@@ -65,28 +107,6 @@
         .addLabel('b1')
         .to(q('.l2'), Object.assign({ duration:.75 }, IN))
         .to(q('.st'), { autoAlpha:.55, duration:.8, ease:'power1.inOut' }, '<')
-        .addLabel('b2');
-      return tl;
-    }
-  });
-
-  /* ---------- S04 · El costo humano ---------- */
-  DECK.register({
-    id:'s04', theme:'light',
-    pulse:{ b0:{ state:'apagada', dur:1.25, ease:'power2.inOut' } },
-    build(ctx){
-      const q = ctx.q;
-      gsap.set(q('.human'), { autoAlpha:0 });
-      gsap.set(q('.scr'),   { autoAlpha:0, y:34, scale:.96 });
-      gsap.set(q('.wrap'),  UP);
-      const tl = gsap.timeline({ paused:true });
-      tl.to(q('.human'), { autoAlpha:1, duration:.9, ease:'power2.out' })
-        .addLabel('b0')
-        .to(q('.scr'), { autoAlpha:1, y:0, scale:1, duration:.5,
-                         stagger:.13, ease:'power3.out' })
-        .to(q('.human'), { autoAlpha:.42, duration:1, ease:'power1.inOut' }, '<.2')
-        .addLabel('b1')
-        .to(q('.wrap'), Object.assign({ duration:.8 }, IN))
         .addLabel('b2');
       return tl;
     }
