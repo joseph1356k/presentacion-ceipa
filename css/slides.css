@@ -27,9 +27,10 @@
 }
 
 /* ============ S02 · Apertura ============ */
-#s02 .wrap{ left:160px; top:344px; max-width:1700px; }
-#s02 .l1{ font-size:92px; }
-#s02 .l2{ font-size:92px; color:var(--soft); margin-top:12px; }
+/* Apertura a escala: es la primera frase de la charla, tiene que golpear */
+#s02 .wrap{ left:160px; top:246px; max-width:1660px; }
+#s02 .l1{ font-size:118px; }
+#s02 .l2{ font-size:118px; color:var(--soft); margin-top:14px; }
 #s02 .l2 b{ color:var(--ink); font-weight:700; }
 
 /* ============ S03 · Fricción ============ */
@@ -39,16 +40,18 @@
 #s03 .st{ font-size:20px; padding:11px 22px; }
 
 /* ============ S04 · El costo humano ============ */
-#s04 .human{ left:150px; top:210px; width:640px; height:560px; }
+#s04 .human{ left:120px; top:182px; width:720px; height:620px; }
 #s04 .hglow{
-  position:absolute; inset:-60px; border-radius:50%;
-  background:radial-gradient(closest-side, rgba(255,196,120,.20), transparent 72%);
+  position:absolute; inset:-80px;
+  background:radial-gradient(closest-side, rgba(255,190,110,.28), transparent 74%);
 }
-#s04 .screens{ right:150px; top:150px; width:660px; height:640px; }
+/* right negativo: el montón de ventanas se sale del cuadro */
+#s04 .screens{ right:-140px; top:120px; width:1120px; height:700px; }
 #s04 .scr{
   position:absolute; border-radius:14px;
-  background:color-mix(in srgb, var(--ink) 5%, transparent);
-  border:1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  background:color-mix(in srgb, var(--ink) 7%, transparent);
+  border:1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+  box-shadow:0 18px 44px -26px rgba(8,38,89,.5);
 }
 #s04 .scr::before{
   content:""; position:absolute; left:0; right:0; top:0; height:30px;
@@ -63,8 +66,8 @@
 #s04 .l1 b{ color:var(--acc); }
 
 /* ============ S05 · El costo se reparte ============ */
-#s05 .wrap{ left:160px; top:200px; max-width:900px; }
-#s05 .l1{ font-size:66px; }
+#s05 .wrap{ left:160px; top:190px; max-width:900px; }
+#s05 .l1{ font-size:82px; }
 #s05 .cost{
   position:absolute; transform:translateY(-50%); width:600px;
   padding-left:30px; border-left:3px solid color-mix(in srgb, var(--line) 55%, transparent);
@@ -154,7 +157,7 @@
 
 /* ============ S11 · De la conversación a la acción ============ */
 #s11 .wrap{ left:160px; top:180px; }
-#s11 .l1{ font-size:68px; line-height:1.22; }
+#s11 .l1{ font-size:86px; line-height:1.2; }
 #s11 .pipe{ left:0; top:0; width:100%; height:100%; }
 #s11 .pchip{ transform:translateX(-50%); text-align:center; }
 #s11 .pchip .lbl{ font:600 25px/1.25 var(--f-text); color:var(--ink); }
@@ -171,20 +174,30 @@
   fill:none; stroke:var(--line); stroke-width:6.5;
   stroke-linecap:round; stroke-linejoin:round;
 }
-#s12 .wrap{ left:160px; top:210px; }
-#s12 .l1{ font-size:88px; }
-#s12 .l2{ font-size:88px; color:var(--soft); margin-top:8px; }
+#s12 .wrap{ left:160px; top:196px; }
+#s12 .l1{ font-size:104px; }
+#s12 .l2{ font-size:104px; color:var(--soft); margin-top:10px; }
 #s12 .l2 b{ color:var(--ink); font-weight:700; }
 #s12 .sub{ left:160px; top:840px; font-size:30px; max-width:1100px; }
 
 /* ============ S13/S14 · Portales de demo ============ */
+/* El producto es lo único tangible de la charla: tiene que ser el objeto
+   más luminoso del deck, no el más turbio. */
 .portal{
   position:absolute; left:520px; top:330px; width:880px; height:520px;
   border-radius:22px;
-  background:rgba(10, 24, 44, .46);
-  border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(180deg, rgba(26,56,96,.86), rgba(11,28,52,.92));
+  border:1px solid rgba(255,255,255,.24);
   backdrop-filter:blur(14px);
-  box-shadow:0 40px 120px -40px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.12), 0 0 90px -20px color-mix(in srgb, var(--line) 34%, transparent);
+  box-shadow:
+    0 60px 150px -40px rgba(0,0,0,.75),
+    0 0 0 1px rgba(0,0,0,.3),
+    0 0 150px -14px color-mix(in srgb, var(--line) 55%, transparent);
+}
+/* filo de cristal captando luz en el borde superior */
+.portal::after{
+  content:""; position:absolute; left:16px; right:16px; top:0; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
 }
 .portal .pbar{
   height:52px; display:flex; align-items:center; gap:9px; padding:0 24px;
@@ -200,7 +213,7 @@
 #s13 .parrow{ align-self:center; font:300 44px/1 var(--f-display); color:rgba(255,255,255,.4); }
 #s13 .fields{ flex:1.15; padding:52px 46px; display:flex; flex-direction:column; gap:22px; }
 #s13 .fields .fh{ font:600 15px/1 var(--f-text); letter-spacing:.2em; color:color-mix(in srgb, var(--line) 80%, #fff); text-transform:uppercase; margin-bottom:4px;}
-#s13 .fields i{ height:13px; border-radius:7px; background:rgba(255,255,255,.16); }
+#s13 .fields i{ height:13px; border-radius:7px; background:rgba(255,255,255,.3); }
 #s13 .wrap{ left:0; right:0; top:128px; text-align:center; }
 #s13 .l1{ font-size:88px; }
 #s13 .sub{ margin-top:16px; font-size:29px; }
@@ -222,7 +235,7 @@
 #s14 .oplist{ position:absolute; inset:110px 0 0 0; padding:26px 30px; display:flex; flex-direction:column; gap:18px; }
 #s14 .oprow{ position:relative; display:flex; align-items:center; gap:18px; flex:1; border-radius:12px;
   background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.09); padding:0 22px; }
-#s14 .oprow i{ height:11px; border-radius:6px; background:rgba(255,255,255,.2); }
+#s14 .oprow i{ height:11px; border-radius:6px; background:rgba(255,255,255,.32); }
 #s14 .oprow .chk{
   margin-left:auto; width:26px; height:26px; border-radius:50%; flex:none;
   border:1.6px solid color-mix(in srgb, var(--line) 75%, transparent);
@@ -250,7 +263,7 @@
 }
 
 /* ============ S15 · Lo que acabamos de ver ============ */
-#s15 .l1{ left:0; right:0; top:136px; text-align:center; font-size:62px; }
+#s15 .l1{ left:0; right:0; top:130px; text-align:center; font-size:80px; }
 #s15 .l2{ left:0; right:0; top:888px; text-align:center; font-size:44px; color:var(--soft); font-family:var(--f-display); font-weight:500; }
 #s15 .l2 b{ color:var(--line); font-weight:600; }
 #s15 .strata{ left:400px; top:300px; width:1120px; height:560px; }
@@ -296,7 +309,7 @@
   font:600 24px/1.25 var(--f-text); color:var(--ink); white-space:nowrap; }
 
 /* ============ S19 · Dónde estamos ============ */
-#s19 .title{ left:0; right:0; top:150px; text-align:center; font-size:62px; }
+#s19 .title{ left:0; right:0; top:144px; text-align:center; font-size:76px; }
 /* Sin translateY: el motion anima `y`, así que la posición vive solo en `top`.
    Cada bloque se apoya sobre su peldaño de la línea, que hace de repisa. */
 #s19 .stage3{ position:absolute; width:470px; }
@@ -356,9 +369,10 @@
 }
 
 /* ============ S22 · Cierre ============ */
-#s22 .wrap{ left:0; right:0; top:296px; text-align:center; }
-#s22 .l1{ font-size:68px; }
-#s22 .l2{ font-size:68px; margin-top:12px; }
+/* Cierre a escala: la última frase merece el mismo peso que la tesis */
+#s22 .wrap{ left:0; right:0; top:270px; text-align:center; }
+#s22 .l1{ font-size:92px; }
+#s22 .l2{ font-size:92px; margin-top:16px; line-height:1.16; }
 #s22 .l2 .serif-i{ color:var(--gold); font-size:1.06em; }
 
 /* ============ S23 · Marca final ============ */

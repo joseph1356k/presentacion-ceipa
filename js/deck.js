@@ -14,7 +14,9 @@
 
   /* ---- Temas por acto (variables CSS animadas en :root) ---- */
   const THEMES = {
-    light:{ '--bg0':'#fdfeff', '--bg1':'#e7eff7', '--ink':'#082659', '--soft':'#5a708f',
+    /* bg0/bg1 con más recorrido: el blanco deja de ser papel plano y se
+       lee como una sala iluminada desde arriba a la izquierda */
+    light:{ '--bg0':'#ffffff', '--bg1':'#d7e4f2', '--ink':'#082659', '--soft':'#5a708f',
             '--line':'#14b3d6', '--acc':'#2f6bd8',
             '--glass':'rgba(8,38,89,.05)', '--glass-br':'rgba(8,38,89,.14)' },
     mid:  { '--bg0':'#123055', '--bg1':'#0a1c33', '--ink':'#eaf2ff', '--soft':'#9fb6dc',
