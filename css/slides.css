@@ -201,8 +201,19 @@
 /* S14: capa que opera */
 #s14 .wrap{ left:0; right:0; top:128px; text-align:center; }
 #s14 .l1{ font-size:88px; }
-#s14 .oplist{ position:absolute; inset:52px 0 0 0; padding:46px 54px; display:flex; flex-direction:column; gap:24px; }
-#s14 .oprow{ position:relative; display:flex; align-items:center; gap:18px; height:52px; border-radius:12px;
+/* Barra de pestañas: es lo que IÜ navega */
+#s14 .optabs{
+  position:absolute; top:52px; left:0; right:0; height:58px;
+  display:flex; align-items:center; gap:12px; padding:0 24px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+#s14 .optab{
+  width:150px; height:38px; border-radius:9px; display:grid; place-items:center;
+  font:500 17px/1 var(--f-text); color:rgba(255,255,255,.42);
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+}
+#s14 .oplist{ position:absolute; inset:110px 0 0 0; padding:26px 30px; display:flex; flex-direction:column; gap:18px; }
+#s14 .oprow{ position:relative; display:flex; align-items:center; gap:18px; flex:1; border-radius:12px;
   background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.09); padding:0 22px; }
 #s14 .oprow i{ height:11px; border-radius:6px; background:rgba(255,255,255,.2); }
 #s14 .oprow .chk{
@@ -219,6 +230,17 @@
 }
 #s14 .sysbox .sq i{ width:22px; height:22px; border-radius:5px; border:2px solid color-mix(in srgb, var(--ink) 56%, transparent); }
 #s14 .sysbox .lbl{ font:600 21px/1 var(--f-text); color:var(--ink); letter-spacing:.1em; }
+
+/* IÜ como cursor con cara, y el anillo que marca cada clic */
+#s14 .iuwrap{ left:0; top:0; width:78px; height:78px; z-index:5; }
+#s14 .iuglow{
+  position:absolute; inset:-30px; border-radius:50%;
+  background:radial-gradient(closest-side, color-mix(in srgb, var(--line) 42%, transparent), transparent 70%);
+}
+#s14 .clickring{
+  left:0; top:0; width:64px; height:64px; border-radius:50%;
+  border:2px solid var(--line); opacity:0; z-index:4;
+}
 
 /* ============ S15 · Lo que acabamos de ver ============ */
 #s15 .l1{ left:0; right:0; top:136px; text-align:center; font-size:62px; }

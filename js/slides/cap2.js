@@ -233,26 +233,67 @@
       gsap.set(q('.sysbox'), { autoAlpha:0, x:26 });
       gsap.set(q('.chk'), { background:'transparent', color:'transparent' });
       gsap.set(q('.oprow'), { borderColor:'rgba(255,255,255,.09)' });
+      gsap.set(q('.iuwrap'), { autoAlpha:0, x:400, y:400, scale:.8, transformOrigin:'center' });
+      gsap.set(q('.clickring'), { autoAlpha:0, scale:.3 });
+
+      /* Puntos de clic en el stage. IÜ no se para encima del objetivo —lo
+         taparía— sino al lado, como un cursor que señala: a la derecha de la
+         pestaña, a la izquierda del check de la fila. El anillo sí marca el
+         punto exacto. */
+      const TAB  = [[620,411],[782,411],[944,411]];
+      const FILA = [[1334,505],[1334,598],[1334,692],[1334,785]];
+      const irA  = ([cx,cy], dur, dx, dy) =>
+        ({ x:cx + (dx==null?18:dx), y:cy + (dy==null?6:dy), duration:dur||.6, ease:'power2.inOut' });
+
       const tl = gsap.timeline({ paused:true });
       tl.to(q('.wrap'),   { y:0, autoAlpha:1, duration:.85, ease:'power3.out' })
         .to(q('.portal'), { autoAlpha:1, y:0, scale:1, duration:1, ease:'power3.out' }, '-=.45')
         .to(q('.sysbox'), { autoAlpha:1, x:0, duration:.6, stagger:.14, ease:'power3.out' }, '-=.4')
+        .to(q('.iuwrap'), { autoAlpha:1, scale:1, duration:.6, ease:'back.out(1.4)' }, '-=.3')
         .addLabel('b0')
-        .call(()=>ctx.startLoop('ops', ()=>{
-          const rows = q('.oprow');
-          const t = gsap.timeline({ repeat:-1, repeatDelay:1 });
-          rows.forEach((row,i)=>{
-            const at = i*.62;
-            t.to(row, { borderColor:'rgba(43,224,247,.55)',
-                        background:'rgba(43,224,247,.07)', duration:.3 }, at)
-             .to(row.querySelector('.chk'),
-                { background:'#2be0f7', color:'#06121f', scale:1.15,
-                  duration:.28, ease:'back.out(2.5)' }, at+.18)
-             .to(row.querySelector('.chk'), { scale:1, duration:.2 }, at+.5);
+        .call(()=>ctx.startLoop('nav', ()=>{
+          const tabs = q('.optab'), rows = q('.oprow');
+          const t = gsap.timeline({ repeat:-1, repeatDelay:.9 });
+
+          /* un clic = IÜ se hunde un poco + anillo que se expande donde toca.
+             Se encadena sobre `t` en vez de crear timelines sueltos. */
+          const clic = ([cx,cy]) => {
+            t.set(q('.clickring'), { x:cx-32, y:cy-32, scale:.3, autoAlpha:.9 })
+             .to(q('.iuwrap'),   { scale:.86, duration:.12, ease:'power2.in' }, '<')
+             .to(q('.clickring'),{ scale:1.5, autoAlpha:0, duration:.5, ease:'power2.out' }, '<')
+             .to(q('.iuwrap'),   { scale:1, duration:.24, ease:'back.out(3)' }, '<.12');
+          };
+
+          tabs.forEach((tab, ti) => {
+            t.to(q('.iuwrap'), irA(TAB[ti], .62));
+            clic(TAB[ti]);
+            t
+             /* la pestaña se activa y las demás se apagan */
+             .to(tab, { background:'rgba(43,224,247,.14)',
+                        borderColor:'rgba(43,224,247,.5)',
+                        color:'rgba(255,255,255,.92)', duration:.25 }, '<.08')
+             .to(tabs.filter(o=>o!==tab), { background:'rgba(255,255,255,.04)',
+                        borderColor:'rgba(255,255,255,.08)',
+                        color:'rgba(255,255,255,.42)', duration:.25 }, '<')
+             /* la lista se recarga al cambiar de pestaña */
+             .to(rows, { autoAlpha:.15, duration:.16 }, '<.05')
+             .to(rows, { borderColor:'rgba(255,255,255,.09)',
+                         background:'rgba(255,255,255,.055)', duration:.01 }, '<')
+             .set(q('.chk'), { background:'transparent', color:'transparent' }, '<')
+             .to(rows, { autoAlpha:1, duration:.3, stagger:.05 });
+
+            /* y en cada pestaña despacha un par de filas */
+            [ti, ti+1].forEach(ri => {
+              const row = rows[ri]; if(!row) return;
+              t.to(q('.iuwrap'), irA(FILA[ri], .5, -64, 4));
+              clic(FILA[ri]);
+              t.to(row, { borderColor:'rgba(43,224,247,.55)',
+                          background:'rgba(43,224,247,.07)', duration:.25 }, '<.06')
+               .to(row.querySelector('.chk'), { background:'#2be0f7', color:'#06121f',
+                          scale:1.15, duration:.26, ease:'back.out(2.5)' }, '<.04')
+               .to(row.querySelector('.chk'), { scale:1, duration:.18 });
+            });
           });
-          t.to(rows, { borderColor:'rgba(255,255,255,.09)',
-                       background:'rgba(255,255,255,.055)', duration:.5 }, '+=1.1')
-           .to(q('.chk'), { background:'transparent', color:'transparent', duration:.5 }, '<');
           return t;
         }))
         .call(()=>ctx.startLoop('sys', ()=>

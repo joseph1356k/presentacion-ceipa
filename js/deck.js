@@ -43,9 +43,15 @@
       sec,
       q: gsap.utils.selector(sec),
       loops:{},
+      /* Red de seguridad: si el presentador vuelve de un alt-tab a la demo en
+         vivo, el ticker pudo quedarse dormido. Despertarlo al crear el bucle
+         garantiza que la animación ambiental arranque igual. */
       startLoop(name, factory){
         if(ctx.loops[name]) ctx.loops[name].kill();
-        ctx.loops[name] = factory();
+        const tl = factory();
+        gsap.ticker.wake();
+        if(tl && tl.paused && tl.paused()) tl.play();
+        ctx.loops[name] = tl;
       },
       killLoops(){
         for(const k in ctx.loops){ ctx.loops[k].kill(); delete ctx.loops[k]; }
