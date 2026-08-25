@@ -308,24 +308,45 @@
 #s20 .bl.hot{ color:var(--gold); }
 
 /* ============ S21 · La interfaz ============ */
-#s21 .l1{ left:0; right:0; top:126px; text-align:center; font-size:56px; }
-#s21 .l2{ left:0; right:0; top:936px; text-align:center; font-size:42px; color:var(--soft); font-family:var(--f-display); font-weight:500; }
+/* ============ S21 · Las eras de la interfaz ============
+   Sin cajas ni línea de fondo: cada era es una columna anclada por su año,
+   separadas por una regla fina. Ascienden de izquierda a derecha. */
+#s21 .l1{ left:0; right:0; top:120px; text-align:center; font-size:56px; }
+#s21 .l2{ left:0; right:0; top:872px; text-align:center; font-size:40px; color:var(--soft); font-family:var(--f-display); font-weight:500; }
 #s21 .l2 b{ color:var(--gold); font-weight:600; }
-#s21 .eras{ left:480px; top:284px; width:960px; height:600px; }
-#s21 .era{
-  position:absolute; left:0; width:960px; height:158px; border-radius:20px;
-  background:color-mix(in srgb, var(--ink) 4%, transparent);
-  border:1px solid color-mix(in srgb, var(--ink) 15%, transparent);
-  display:flex; align-items:center; gap:34px; padding:0 46px;
+#s21 .eras{ left:0; top:318px; width:100%; height:580px; }
+#s21 .era{ position:absolute; width:460px; }
+#s21 .era .ic{
+  display:block; width:56px; height:56px; stroke:var(--ink); fill:none;
+  stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; opacity:.55;
 }
-#s21 .era svg{ width:64px; height:64px; stroke:var(--ink); fill:none; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; opacity:.85; flex:none; }
-#s21 .era .etxt{ display:flex; flex-direction:column; gap:9px; }
-#s21 .era .lbl{ font:700 34px/1 var(--f-display); color:var(--ink); letter-spacing:-.01em; }
+#s21 .era .rule{
+  height:2px; margin:26px 0 30px;
+  background:color-mix(in srgb, var(--ink) 24%, transparent);
+}
+/* Altura fija y alineado al pie: el año y el signo de la era abierta
+   comparten baseline aunque midan distinto. */
+#s21 .era .yr{
+  height:92px; display:flex; align-items:flex-end;
+  font:700 92px/.92 var(--f-display); color:var(--ink);
+  letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+}
+#s21 .era .nm{ font:700 40px/1 var(--f-display); color:var(--ink); letter-spacing:-.01em; margin-top:24px; }
 /* El gesto es lo que hace reconocible cada era sin nombrar marcas */
-#s21 .era .how{ font:400 21px/1 var(--f-text); color:var(--soft); }
-#s21 .era .yr{ margin-left:auto; font:500 26px/1 var(--f-text); color:var(--soft); font-variant-numeric:tabular-nums; letter-spacing:.06em; }
-#s21 .era.next{ border-color:color-mix(in srgb, var(--gold) 40%, transparent); }
+#s21 .era .how{ font:400 23px/1.4 var(--f-text); color:var(--soft); margin-top:14px; }
+
+#s21 .era.next .rule{
+  background:var(--gold);
+  box-shadow:0 0 26px 1px color-mix(in srgb, var(--gold) 45%, transparent);
+}
 #s21 .era.next .yr{ color:var(--gold); }
+#s21 .era.next .ic{ stroke:var(--gold); opacity:.9; }
+/* Halo ceñido al signo, no una mancha suelta en el vacío */
+#s21 .eglow{
+  position:absolute; left:-70px; top:66px; width:250px; height:210px;
+  border-radius:50%; pointer-events:none;
+  background:radial-gradient(closest-side, color-mix(in srgb, var(--gold) 22%, transparent), transparent 72%);
+}
 
 /* ============ S22 · Cierre ============ */
 #s22 .wrap{ left:0; right:0; top:296px; text-align:center; }

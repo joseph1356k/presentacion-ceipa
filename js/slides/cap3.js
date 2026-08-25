@@ -129,24 +129,27 @@
   /* ---------- S21 · La interfaz cambia el mercado ---------- */
   DECK.register({
     id:'s21', theme:'dark',
-    pulse:{ b0:{ state:'eras', dur:1.3, ease:'power3.inOut' } },
+    /* Aquí el hilo se retira: la slide se sostiene sola y la línea vuelve
+       en el cierre convertida en horizonte. */
+    pulse:{ b0:{ state:{ d: PULSE.STATES.horizonte.d, o:0 }, dur:1.1, ease:'power2.inOut' } },
     build(ctx){
       const q = ctx.q;
       gsap.set(q('.l1, .l2'), { y:36, autoAlpha:0 });
-      gsap.set(q('.era'), { autoAlpha:0, x:-44 });
+      gsap.set(q('.era'), { autoAlpha:0, y:38 });
+      gsap.set(q('.era .rule'), { scaleX:0, transformOrigin:'left center' });
+      gsap.set(q('.eglow'), { autoAlpha:0, scale:.75, transformOrigin:'center' });
       const tl = gsap.timeline({ paused:true });
       tl.to(q('.l1'), { y:0, autoAlpha:1, duration:.85, ease:'power3.out' })
         .addLabel('b0')
-        .to(q('.era'), { autoAlpha:1, x:0, duration:.6,
-                         stagger:{ each:.16, from:'end' }, ease:'power3.out' })
+        /* de izquierda a derecha: el orden cronológico se lee solo */
+        .to(q('.era'), { autoAlpha:1, y:0, duration:.7, stagger:.2, ease:'power3.out' })
+        .to(q('.era .rule'), { scaleX:1, duration:.65, stagger:.2, ease:'power2.out' }, '<.12')
         .addLabel('b1')
         .to(q('.l2'), { y:0, autoAlpha:1, duration:.75, ease:'power3.out' })
-        .to(q('.era.next'), {
-            borderColor:'rgba(212,169,84,.65)',
-            boxShadow:'0 0 60px -12px rgba(212,169,84,.35)',
-            duration:.7, ease:'power2.out' }, '-=.4')
+        .to(q('.eglow'), { autoAlpha:1, scale:1, duration:.9, ease:'power2.out' }, '<')
         .fromTo(q('.era.next .yr'), { scale:1 },
-            { scale:1.18, duration:.45, yoyo:true, repeat:1, ease:'power2.inOut' }, '<')
+            { scale:1.1, duration:.45, yoyo:true, repeat:1,
+              ease:'power2.inOut', transformOrigin:'left center' }, '<')
         .addLabel('b2');
       return tl;
     }
