@@ -34,6 +34,13 @@
         <circle r="5" opacity="0"/><circle r="5" opacity="0"/><circle r="5" opacity="0"/>
       </g>
 
+      <!-- bajantes de cada actor hacia la capa (S09) -->
+      <g id="s09links" class="deco">
+        <line x1="520"  y1="588" x2="520"  y2="646"/>
+        <line x1="960"  y1="588" x2="960"  y2="646"/>
+        <line x1="1400" y1="588" x2="1400" y2="646"/>
+      </g>
+
       <!-- abanico del costo repartido (S05) — cada rama aterriza en el centro de su bloque -->
       <g id="s05fan" class="deco">
         <path d="M726,630 C860,624 1000,408 1150,400"/>
@@ -183,19 +190,21 @@
 
     <!-- S09 · Ahí nace Miracle -->
     <section class="slide" id="s09">
-      <div class="abs layer"></div>
-      <div class="abs node" style="left:520px;top:432px">
+      <!-- Los tres actores en fila, sobre la misma línea de base -->
+      <div class="abs node" style="left:410px">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="20" r="10"/><path d="M12,52 C12,38 52,38 52,52"/></svg>
         <div class="lbl">médico</div>
       </div>
-      <div class="abs node" style="left:960px;top:620px">
+      <div class="abs node" style="left:850px">
         <svg viewBox="0 0 64 64"><rect x="18" y="10" width="28" height="44" rx="4"/><line x1="25" y1="24" x2="39" y2="24"/><line x1="25" y1="32" x2="39" y2="32"/><line x1="25" y1="40" x2="33" y2="40"/></svg>
         <div class="lbl">información</div>
       </div>
-      <div class="abs node" style="left:1400px;top:432px">
+      <div class="abs node" style="left:1290px">
         <svg viewBox="0 0 64 64"><rect x="12" y="12" width="16" height="16" rx="3"/><rect x="36" y="12" width="16" height="16" rx="3"/><rect x="12" y="36" width="16" height="16" rx="3"/><rect x="36" y="36" width="16" height="16" rx="3"/></svg>
         <div class="lbl">sistemas</div>
       </div>
+      <!-- La capa: una banda por debajo que los sostiene a los tres -->
+      <div class="abs layer"></div>
       <div class="abs wrap">
         <!-- La frase del beat 0 cede su lugar exacto a la marca en el beat 1 -->
         <div class="t-med intro">Hoy el médico, la información y los sistemas<br>van cada uno por su lado.</div>

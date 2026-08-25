@@ -37,13 +37,15 @@
   DECK.register({
     id:'s09', theme:'deep', themeDur:1.5,
     pulse:{
-      b0:{ state:'separados', dur:.8, ease:'power2.inOut' },
-      b1:{ state:'tejido',    dur:1.35, ease:'power3.inOut' }
+      b0:{ state:'separados', dur:.8,  ease:'power2.inOut' },
+      b1:{ state:'canal',     dur:1.15, ease:'power3.inOut' }
     },
     build(ctx){
       const q = ctx.q;
-      gsap.set(q('.node'),  { autoAlpha:0, scale:.9 });
+      gsap.set(q('.node'),  { autoAlpha:0, y:22 });
       gsap.set(q('.layer'), { autoAlpha:0, scaleX:.55, transformOrigin:'center' });
+      gsap.set('#s09links', { autoAlpha:1 });
+      gsap.set('#s09links line', { autoAlpha:0, drawSVG:'0% 0%' });
       gsap.set(q('.intro'), { autoAlpha:0, y:28 });
       gsap.set(q('.kick'),  { autoAlpha:0, y:26 });
       gsap.set(q('.lw'),    { autoAlpha:0, y:26 });
@@ -52,18 +54,15 @@
       gsap.set(q('.sub'),   { autoAlpha:0, y:24 });
       const tl = gsap.timeline({ paused:true });
       tl.to(q('.intro'), { autoAlpha:1, y:0, duration:.8, ease:'power3.out' })
-        .to(q('.node'), { autoAlpha:1, scale:1, duration:.7,
+        .to(q('.node'), { autoAlpha:1, y:0, duration:.7,
                           stagger:.16, ease:'power3.out' }, '-=.35')
-        .call(()=>ctx.startLoop('float', ()=>{
-          const t = gsap.timeline({ repeat:-1, yoyo:true });
-          q('.node').forEach((n,i)=>
-            t.to(n, { y: i%2 ? 11 : -11, duration: 2.2 + i*.4, ease:'sine.inOut' }, 0));
-          return t;
-        }))
         .addLabel('b0')
         /* la frase cede el sitio exacto a la marca */
         .to(q('.intro'), { autoAlpha:0, y:-26, duration:.55, ease:'power2.in' })
         .to(q('.layer'), { autoAlpha:1, scaleX:1, duration:1.05, ease:'power3.inOut' }, '-=.25')
+        /* cada actor baja su conexión a la capa */
+        .to('#s09links line', { autoAlpha:.55, drawSVG:'0% 100%',
+                                duration:.5, stagger:.12, ease:'power2.out' }, '-=.55')
         .to(q('.kick'), { autoAlpha:1, y:0, duration:.6, ease:'power3.out' }, '-=.6')
         .to(q('.lw'),   { autoAlpha:1, y:0, duration:.75, ease:'power3.out' }, '-=.35')
         /* la sonrisa de la marca se dibuja desde el centro hacia afuera */

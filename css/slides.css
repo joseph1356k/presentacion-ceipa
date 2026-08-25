@@ -97,15 +97,22 @@
 #s09 .brandblock{ position:absolute; left:0; right:0; top:0; text-align:center; }
 #s09 .kick{ margin-bottom:26px; }
 #s09 .brandlogo{ color:var(--ink); }
+/* Todo cuelga de una rejilla: actores en fila a la misma altura, bajantes
+   verticales, y la capa como banda por debajo que los abarca a los tres.
+   Sin transform en el posicionado — el motion anima y/scale. */
+#s09 .node{ position:absolute; top:470px; width:220px; text-align:center; }
+#s09 .node svg{ width:60px; height:60px; stroke:var(--ink); fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; opacity:.9; }
+#s09 .node .lbl{ font:500 25px/1.2 var(--f-text); color:var(--ink); margin-top:14px; }
 #s09 .layer{
-  left:330px; top:452px; width:1260px; height:250px; border-radius:26px;
-  background:linear-gradient(90deg, color-mix(in srgb, var(--line) 9%, transparent), color-mix(in srgb, var(--line) 16%, transparent), color-mix(in srgb, var(--line) 9%, transparent));
-  border:1px solid color-mix(in srgb, var(--line) 32%, transparent);
+  left:300px; top:646px; width:1320px; height:96px; border-radius:20px;
+  background:linear-gradient(90deg,
+    color-mix(in srgb, var(--line) 7%, transparent),
+    color-mix(in srgb, var(--line) 15%, transparent),
+    color-mix(in srgb, var(--line) 7%, transparent));
+  border:1px solid color-mix(in srgb, var(--line) 34%, transparent);
+  box-shadow:0 0 70px -18px color-mix(in srgb, var(--line) 45%, transparent);
 }
-#s09 .node{ position:absolute; transform:translate(-50%,-50%); text-align:center; width:220px; }
-#s09 .node svg{ width:58px; height:58px; stroke:var(--ink); fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; opacity:.9; }
-#s09 .node .lbl{ font:500 24px/1.2 var(--f-text); color:var(--ink); margin-top:10px; }
-#s09 .sub{ left:0; right:0; top:872px; text-align:center; font-size:31px; }
+#s09 .sub{ left:0; right:0; top:836px; text-align:center; font-size:31px; }
 
 /* ============ S10 · IÜ opera ============
    Cuatro tareas en fila; IÜ viaja sobre la línea y las va cerrando.

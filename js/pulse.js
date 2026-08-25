@@ -121,10 +121,11 @@
       'M-60,620 C300,620 500,618 760,618 C1100,618 1400,616 1980,614'
     },
 
-    /* S9·b0 — separados: la línea aún no teje nada, apenas late de fondo */
-    separados: { o:.18, d:
-      'M-60,620 C300,620 500,618 760,618 C1100,618 1400,616 1980,614'
-    },
+    /* S9·b0 — separados: la línea espera abajo, todavía no conecta nada */
+    separados: { o:.16, d:'M-60,832 L1980,832' },
+
+    /* S9·b1 — canal: la línea sube y atraviesa la capa de lado a lado */
+    canal: { o:1, d:'M-60,694 L1980,694' },
 
     /* S7 — el tejido: la línea hila médico → información → sistemas */
     tejido: { o:1, d:
