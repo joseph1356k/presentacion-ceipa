@@ -34,10 +34,10 @@
       'M-60,636 C180,636 380,634 560,632 C640,631 690,630 726,630'
     },
 
-    /* S10 — la línea acuna a IÜ: pasa por debajo de la cara (x 330–580) */
-    cuna: { o:1, d:
-      'M-60,420 C110,420 190,700 420,712 C620,722 780,714 920,700' +
-      ' C1220,668 1580,556 1980,468'
+    /* S10 — la senda por la que IÜ recorre las tareas (a la altura de su centro) */
+    senda: { o:1, d:
+      'M-60,700 C240,700 420,694 700,696 C1000,698 1300,700 1560,698' +
+      ' C1720,697 1860,700 1980,700'
     },
 
     /* S12 — la línea sube a un punto de revisión y continúa */

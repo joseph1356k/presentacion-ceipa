@@ -49,14 +49,20 @@
         <line x1="1310" y1="570" x2="1230" y2="738"/>
       </g>
 
-      <!-- viajero del ciclo (S18) -->
-      <circle id="orbitDot" class="deco" r="6" opacity="0"/>
+      <!-- viajero del ciclo (S18). Gira sobre el centro exacto del loop
+           (960,600 r=220) en vez de seguir un path que luego cambia de forma,
+           así nunca se despega de la línea. -->
+      <g id="orbitG" class="deco">
+        <circle id="orbitHalo" cx="960" cy="380" r="17"/>
+        <circle id="orbitDot"  cx="960" cy="380" r="7"/>
+      </g>
 
-      <!-- ramas de expansión (S20) -->
+      <!-- ramas de expansión (S20) — cada una muere justo en el borde
+           izquierdo de su etiqueta, a la altura de su línea de texto -->
       <g id="s15branches" class="deco">
-        <path d="M950,540 C1150,525 1400,480 1560,466 C1620,461 1670,455 1720,450"/>
-        <path d="M950,540 C1140,560 1360,590 1520,600 C1590,604 1650,608 1700,610"/>
-        <path d="M950,540 C1130,600 1330,690 1490,730 C1560,747 1620,757 1680,764"/>
+        <path d="M950,540 C1120,516 1300,452 1490,417"/>
+        <path d="M950,540 C1120,556 1300,572 1470,579"/>
+        <path d="M950,540 C1120,604 1290,690 1440,733"/>
       </g>
     </svg>
 
@@ -204,10 +210,32 @@
       <div class="abs t-sub sub">Una capa entre el médico, la información y los sistemas.</div>
     </section>
 
-    <!-- S10 · IÜ — cuando la interfaz se vuelve conversación -->
+    <!-- S10 · IÜ recorre la pantalla y opera: computer use en miniatura -->
     <section class="slide" id="s10">
+      <div class="abs wrap">
+        <div class="t-med l1">Y esa capa <b>puede operar el software por ti.</b></div>
+      </div>
+      <div class="abs tasks">
+        <div class="task" style="left:350px">
+          <div class="tlabel">abrir la historia</div>
+          <div class="tbar"><i></i></div><span class="tchk">✓</span>
+        </div>
+        <div class="task" style="left:700px">
+          <div class="tlabel">llenar los campos</div>
+          <div class="tbar"><i></i></div><span class="tchk">✓</span>
+        </div>
+        <div class="task" style="left:1050px">
+          <div class="tlabel">adjuntar la orden</div>
+          <div class="tbar"><i></i></div><span class="tchk">✓</span>
+        </div>
+        <div class="task" style="left:1400px">
+          <div class="tlabel">guardar y cerrar</div>
+          <div class="tbar"><i></i></div><span class="tchk">✓</span>
+        </div>
+      </div>
       <div class="abs iuwrap">
-        <svg class="iu" viewBox="0 0 100 100" style="--iu-size:250px">
+        <div class="iuglow"></div>
+        <svg class="iu" viewBox="0 0 100 100" style="--iu-size:128px">
           <path class="face" d="M50,1 C86,1 99,14 99,50 C99,86 86,99 50,99 C14,99 1,86 1,50 C1,14 14,1 50,1"/>
           <path class="ft brow" d="M22,30 Q29,25 36,30"/>
           <path class="ft brow" d="M64,30 Q71,25 78,30"/>
@@ -216,10 +244,7 @@
           <path class="ft mouth" d="M37,62 Q50,72 63,62"/>
         </svg>
       </div>
-      <div class="abs wrap">
-        <div class="t-med l1">Y una parte de esa capa <b>simplemente conversa.</b></div>
-        <div class="t-sub sub">IÜ — cuando la interfaz deja de ser un formulario y empieza a ser un diálogo.</div>
-      </div>
+      <div class="abs t-sub sub">IÜ no se queda en responder. Entra al sistema y hace el trabajo.</div>
     </section>
 
     <!-- S11 · De la conversación a la acción -->
@@ -378,15 +403,27 @@
       <div class="abs eras">
         <div class="era next" style="top:0">
           <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="6"/><circle cx="32" cy="32" r="15" stroke-dasharray="4 7" opacity=".7"/><circle cx="32" cy="32" r="24" stroke-dasharray="3 9" opacity=".4"/></svg>
-          <div class="lbl">intención</div><div class="yr">¿ … ?</div>
+          <div class="etxt">
+            <div class="lbl">la intención</div>
+            <div class="how">decir lo que necesitas y que ocurra</div>
+          </div>
+          <div class="yr">¿ … ?</div>
         </div>
         <div class="era" style="top:221px">
           <svg viewBox="0 0 64 64"><rect x="20" y="6" width="24" height="52" rx="6"/><circle cx="32" cy="48" r="2.6"/><circle cx="32" cy="27" r="9" opacity=".55"/></svg>
-          <div class="lbl">touch</div><div class="yr">2007</div>
+          <div class="etxt">
+            <div class="lbl">el dedo</div>
+            <div class="how">tocar la pantalla con la mano</div>
+          </div>
+          <div class="yr">2007</div>
         </div>
         <div class="era" style="top:442px">
           <svg viewBox="0 0 64 64"><rect x="12" y="10" width="40" height="26" rx="3"/><line x1="32" y1="36" x2="32" y2="44"/><rect x="10" y="46" width="44" height="10" rx="3"/></svg>
-          <div class="lbl">computador</div><div class="yr">1984</div>
+          <div class="etxt">
+            <div class="lbl">el mouse</div>
+            <div class="how">apuntar y hacer clic en una ventana</div>
+          </div>
+          <div class="yr">1984</div>
         </div>
       </div>
       <div class="abs l2">La pregunta es: <b>¿cuál es la siguiente?</b></div>

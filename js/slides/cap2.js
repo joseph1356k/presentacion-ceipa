@@ -76,30 +76,56 @@
     }
   });
 
-  /* ---------- S10 · IÜ ---------- */
+  /* ---------- S10 · IÜ opera ----------
+     IÜ recorre la fila de tareas y las va cerrando: computer use en miniatura,
+     no un gesto decorativo. Cada parada = una tarea real cerrada. */
   DECK.register({
     id:'s10', theme:'deep',
-    pulse:{ b0:{ state:'cuna', dur:1.25, ease:'power3.inOut' } },
+    pulse:{ b0:{ state:'senda', dur:1.1, ease:'power2.inOut' } },
     build(ctx){
       const q = ctx.q;
-      gsap.set(q('.iuwrap'), { autoAlpha:0, scale:.86, transformOrigin:'center' });
+      const PARADAS = [422, 772, 1122, 1472];   // x de .iuwrap para centrarse en cada tarea
+      gsap.set(q('.iuwrap'), { autoAlpha:0, x:120, y:0, scale:.85, transformOrigin:'center' });
+      gsap.set(q('.iuglow'), { autoAlpha:.25 });
       gsap.set(q('.l1, .sub'), { autoAlpha:0, y:34 });
-      gsap.set(q('.mouth'), { drawSVG:'50% 50%' });
-      gsap.set(q('.brow'),  { autoAlpha:0, y:-4 });
+      gsap.set(q('.task'),  { autoAlpha:0, y:26 });
+      gsap.set(q('.tbar i'), { scaleX:0 });
+      gsap.set(q('.tchk'),  { autoAlpha:0, scale:.3 });
+
       const tl = gsap.timeline({ paused:true });
-      tl.to(q('.iuwrap'), { autoAlpha:1, scale:1, duration:.9, ease:'back.out(1.4)' })
-        .to(q('.brow'),   { autoAlpha:1, y:0, duration:.4, stagger:.08, ease:'power2.out' }, '-=.35')
-        .to(q('.mouth'),  { drawSVG:'0% 100%', duration:.55, ease:'power2.out' }, '-=.2')
-        .to(q('.l1'), { autoAlpha:1, y:0, duration:.75, ease:'power3.out' }, '-=.25')
-        /* parpadeo ocasional: lo vuelve un personaje, no un icono */
+      tl.to(q('.l1'), { autoAlpha:1, y:0, duration:.8, ease:'power3.out' })
+        .to(q('.task'), { autoAlpha:1, y:0, duration:.5, stagger:.1, ease:'power3.out' }, '-=.4')
+        .to(q('.iuwrap'), { autoAlpha:1, x:190, scale:1, duration:.8, ease:'back.out(1.3)' }, '-=.35')
         .call(()=>ctx.startLoop('blink', ()=>{
-          const t = gsap.timeline({ repeat:-1, repeatDelay:4.2 });
+          const t = gsap.timeline({ repeat:-1, repeatDelay:3.8 });
           t.to(q('.eye'), { scaleY:.1, transformOrigin:'center bottom', duration:.09 })
            .to(q('.eye'), { scaleY:1, duration:.11 });
           return t;
         }))
-        .addLabel('b0')
-        .to(q('.sub'), { autoAlpha:1, y:0, duration:.7, ease:'power3.out' })
+        .addLabel('b0');
+
+      /* El recorrido: viaja, se asoma a la tarea, la ejecuta, sigue. */
+      PARADAS.forEach((x, i) => {
+        const tarea = q('.task')[i];
+        tl.to(q('.iuwrap'), { x, duration:.62, ease:'power2.inOut' })
+          .to(q('.iuwrap'), { y:-16, duration:.31, ease:'sine.inOut', yoyo:true, repeat:1 }, '<')
+          /* se estira un poco al llegar: el "ahora hago esto" */
+          .to(q('.iuwrap'), { scale:1.1, duration:.16, yoyo:true, repeat:1, ease:'power2.out' })
+          .to(q('.iuglow'), { autoAlpha:.75, duration:.18, yoyo:true, repeat:1 }, '<')
+          .to(tarea, { borderColor:'color-mix(in srgb, var(--line) 55%, transparent)',
+                       background:'color-mix(in srgb, var(--line) 9%, transparent)',
+                       duration:.25 }, '<')
+          .to(tarea.querySelector('.tbar i'), { scaleX:1, duration:.42, ease:'power2.out' }, '<.05')
+          .to(tarea.querySelector('.tchk'), { autoAlpha:1, scale:1,
+                                              duration:.3, ease:'back.out(2.6)' }, '>-.08')
+          .to({}, { duration:.12 });
+      });
+
+      /* Vuelve al centro y se acomoda: cierra el recorrido en un sitio
+         estable para hablar, en vez de quedar cortada contra el borde. */
+      tl.to(q('.iuwrap'), { x:896, duration:.8, ease:'power2.inOut' })
+        .to(q('.iuwrap'), { y:-22, duration:.26, yoyo:true, repeat:1, ease:'power2.out' })
+        .to(q('.sub'), { autoAlpha:1, y:0, duration:.7, ease:'power3.out' }, '-=.4')
         .addLabel('b1');
       return tl;
     }

@@ -107,12 +107,43 @@
 #s09 .node .lbl{ font:500 24px/1.2 var(--f-text); color:var(--ink); margin-top:10px; }
 #s09 .sub{ left:0; right:0; top:872px; text-align:center; font-size:31px; }
 
-/* ============ S10 · IÜ ============ */
-#s10 .iuwrap{ left:330px; top:50%; transform:translateY(-50%); }
-#s10 .wrap{ left:700px; top:50%; transform:translateY(-50%); max-width:1060px; }
-#s10 .l1{ font-size:64px; }
+/* ============ S10 · IÜ opera ============
+   Cuatro tareas en fila; IÜ viaja sobre la línea y las va cerrando.
+   Ojo: .iuwrap se mueve con GSAP (x/y), así que su sitio va solo en top/left. */
+#s10 .wrap{ left:0; right:0; top:168px; text-align:center; }
+#s10 .l1{ font-size:60px; }
 #s10 .l1 b{ color:var(--line); }
-#s10 .sub{ margin-top:28px; font-size:28px; max-width:1040px; }
+
+#s10 .tasks{ left:0; top:0; width:100%; height:100%; }
+#s10 .task{
+  position:absolute; top:392px; width:280px; height:152px;
+  border-radius:18px; padding:26px 24px;
+  background:color-mix(in srgb, var(--ink) 5%, transparent);
+  border:1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+}
+#s10 .tlabel{ font:500 22px/1.25 var(--f-text); color:var(--soft); }
+#s10 .tbar{
+  margin-top:22px; height:9px; border-radius:5px;
+  background:color-mix(in srgb, var(--ink) 12%, transparent); overflow:hidden;
+}
+#s10 .tbar i{
+  display:block; height:100%; width:100%; border-radius:5px;
+  background:var(--line); transform:scaleX(0); transform-origin:left center;
+}
+#s10 .tchk{
+  position:absolute; right:22px; bottom:20px;
+  width:30px; height:30px; border-radius:50%;
+  display:grid; place-items:center;
+  background:var(--line); color:var(--bg1);
+  font:700 16px/1 var(--f-text);
+}
+
+#s10 .iuwrap{ left:0; top:636px; width:128px; height:128px; }
+#s10 .iuglow{
+  position:absolute; inset:-46px; border-radius:50%;
+  background:radial-gradient(closest-side, color-mix(in srgb, var(--line) 38%, transparent), transparent 70%);
+}
+#s10 .sub{ left:0; right:0; top:876px; text-align:center; font-size:28px; }
 
 /* ============ S11 · De la conversación a la acción ============ */
 #s11 .wrap{ left:160px; top:180px; }
@@ -266,7 +297,10 @@
   display:flex; align-items:center; gap:34px; padding:0 46px;
 }
 #s21 .era svg{ width:64px; height:64px; stroke:var(--ink); fill:none; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; opacity:.85; flex:none; }
+#s21 .era .etxt{ display:flex; flex-direction:column; gap:9px; }
 #s21 .era .lbl{ font:700 34px/1 var(--f-display); color:var(--ink); letter-spacing:-.01em; }
+/* El gesto es lo que hace reconocible cada era sin nombrar marcas */
+#s21 .era .how{ font:400 21px/1 var(--f-text); color:var(--soft); }
 #s21 .era .yr{ margin-left:auto; font:500 26px/1 var(--f-text); color:var(--soft); font-variant-numeric:tabular-nums; letter-spacing:.06em; }
 #s21 .era.next{ border-color:color-mix(in srgb, var(--gold) 40%, transparent); }
 #s21 .era.next .yr{ color:var(--gold); }

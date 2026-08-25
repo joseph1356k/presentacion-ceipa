@@ -95,10 +95,16 @@
     history.replaceState(null, '', '#s' + (DECK.s+1) + 'b' + DECK.b);
   }
 
-  /* ---- limpieza de overlays y decoraciones compartidas ---- */
+  /* ---- limpieza de overlays y decoraciones compartidas ----
+     Todo lo que vive en el SVG compartido se apaga Y se devuelve a su sitio:
+     un latido o un viajero a medio camino no debe filtrarse a la slide siguiente. */
   function resetShared(){
     gsap.set(['#holdOverlay','#holdTag'], { autoAlpha:0 });
+    gsap.killTweensOf(['#blipG','#orbitG','#particles circle']);
     gsap.set('#pulseSvg .deco', { autoAlpha:0 });
+    gsap.set('#blipG', { autoAlpha:0, attr:{ transform:'translate(-200,640)' } });
+    gsap.set('#orbitG', { rotation:0, svgOrigin:'960 600' });
+    gsap.set('#particles circle', { autoAlpha:0, x:0, y:0 });
   }
 
   /* ---- entrada a una slide ---- */

@@ -72,11 +72,12 @@
         .addLabel('b0')
         .to(q('.lp'), { autoAlpha:1, scale:1, duration:.5,
                         stagger:.13, ease:'power3.out' })
+        /* Gira sobre el centro del loop: el punto queda clavado en la línea
+           pase lo que pase con el morph del hilo. */
         .call(()=>ctx.startLoop('orbit', ()=>{
-          gsap.set('#orbitDot', { autoAlpha:1 });
-          return gsap.to('#orbitDot', {
-            motionPath:{ path:'#pulsePath', align:'#pulsePath', alignOrigin:[.5,.5] },
-            duration:8, ease:'none', repeat:-1 });
+          gsap.set('#orbitG', { autoAlpha:1, rotation:0, svgOrigin:'960 600' });
+          return gsap.to('#orbitG', { rotation:360, svgOrigin:'960 600',
+                                      duration:9, ease:'none', repeat:-1 });
         }))
         .addLabel('b1');
       return tl;
