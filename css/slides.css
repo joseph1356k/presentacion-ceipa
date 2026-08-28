@@ -51,15 +51,34 @@
 #s02 .l2 b{ color:var(--ink); font-weight:700; }
 
 /* ============ S03 · El dato (49,2%) ============
-   Composición dividida: la pila de ventanas invade desde la derecha y
-   comprime la zona humana. Los números se leen en 2 segundos. */
-#s03 .human{ left:110px; top:150px; width:640px; height:560px; }
-#s03 .hglow{
-  position:absolute; inset:-80px;
-  background:radial-gradient(closest-side, rgba(255,190,110,.28), transparent 74%);
+   Dos territorios que no se pisan. Izquierda: los datos, sobre fondo
+   limpio, sin una sola tarjeta detrás. Derecha: la escena — la consulta
+   comprimida por la pila de ventanas. El texto ya no compite con la UI. */
+
+/* ---- Izquierda · los datos ---- */
+#s03 .stat49{ left:160px; top:196px; }
+#s03 .stat49 .n{
+  font:700 232px/1 var(--f-display); letter-spacing:-.03em;
+  color:var(--ink); font-variant-numeric:tabular-nums;
 }
-/* right negativo: el montón de ventanas se sale del cuadro */
-#s03 .screens{ right:-140px; top:96px; width:1120px; height:700px; }
+#s03 .stat49 .s{
+  margin-top:26px; max-width:660px;
+  font:400 31px/1.45 var(--f-text); color:var(--soft);
+}
+#s03 .stat27{ left:160px; top:618px; }
+#s03 .stat27 .n{
+  font:700 112px/1 var(--f-display); letter-spacing:-.02em;
+  color:var(--acc); font-variant-numeric:tabular-nums;
+}
+#s03 .stat27 .s{ margin-top:10px; font:400 26px/1.4 var(--f-text); color:var(--soft); }
+
+/* ---- Derecha · la interfaz ----
+   La pila entra desde fuera del cuadro y ocupa el territorio derecho.
+   scale() sobre el contenedor: GSAP solo anima los .scr hijos. */
+#s03 .screens{
+  right:-150px; top:132px; width:1120px; height:700px;
+  transform:scale(.9); transform-origin:100% 0;
+}
 #s03 .scr{
   position:absolute; border-radius:14px;
   background:color-mix(in srgb, var(--ink) 7%, transparent);
@@ -74,18 +93,7 @@
   position:absolute; left:9%; height:8px; border-radius:4px;
   background:color-mix(in srgb, var(--ink) 13%, transparent);
 }
-#s03 .stat49{ left:975px; top:270px; }
-#s03 .stat49 .n{
-  font:700 250px/1 var(--f-display); letter-spacing:-.03em;
-  color:var(--ink); font-variant-numeric:tabular-nums;
-}
-#s03 .stat49 .s{ margin-top:22px; font:400 30px/1.45 var(--f-text); color:var(--soft); }
-#s03 .stat27{ left:150px; top:628px; }
-#s03 .stat27 .n{
-  font:700 112px/1 var(--f-display); letter-spacing:-.02em;
-  color:var(--acc); font-variant-numeric:tabular-nums;
-}
-#s03 .stat27 .s{ margin-top:10px; font:400 26px/1.4 var(--f-text); color:var(--soft); }
+
 #s03 .concl{ left:160px; top:906px; max-width:1720px; font-size:50px; }
 #s03 .concl b{ color:var(--acc); }
 /* Evidencia externa, no medición propia: fuente visible pero discreta */

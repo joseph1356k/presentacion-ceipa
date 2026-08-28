@@ -70,8 +70,9 @@
   });
 
   /* ---------- S03 · El dato (49,2%) ----------
-     La pila de ventanas invade y comprime la consulta; el número
-     cuenta hasta 49,2 mientras la interfaz se come la composición. */
+     La pila de ventanas invade el territorio derecho; el número cuenta
+     hasta 49,2 mientras la interfaz se come la jornada.
+     4 beats: b0 la interfaz · b1 el 49,2% · b2 el 27% · b3 la conclusión. */
   DECK.register({
     id:'s03', theme:'light',
     pulse:{
@@ -80,8 +81,6 @@
     },
     build(ctx){
       const q = ctx.q;
-      gsap.set(q('.human'), { autoAlpha:0, x:190, scale:1.08, transformOrigin:'left center' });
-      gsap.set(q('.hglow'), { autoAlpha:1 });
       gsap.set(q('.scr'),   { autoAlpha:0, x:240, y:24 });
       gsap.set(q('.stat49'), { autoAlpha:0, y:28 });
       gsap.set(q('.stat27'), { autoAlpha:0, y:22 });
@@ -90,14 +89,11 @@
       const n49 = q('.stat49 .n')[0], v = { p:0 };
       n49.textContent = '0%';
       const tl = gsap.timeline({ paused:true });
-      tl.to(q('.human'), { autoAlpha:1, duration:.9, ease:'power2.out' })
-        .addLabel('b0')
-        /* las ventanas entran y la consulta se comprime */
-        .to(q('.scr'), { autoAlpha:1, x:0, y:0, duration:.55,
+      /* la interfaz entra sola: es lo primero que se ve */
+      tl.to(q('.scr'), { autoAlpha:1, x:0, y:0, duration:.55,
                          stagger:.09, ease:'power3.out' })
-        .to(q('.human'), { x:0, scale:1, duration:1.0, ease:'power2.inOut' }, '<.15')
-        .to(q('.hglow'), { autoAlpha:.55, duration:1 }, '<')
-        .to(q('.stat49'), { autoAlpha:1, y:0, duration:.7, ease:'power3.out' }, '-=.55')
+        .addLabel('b0')
+        .to(q('.stat49'), { autoAlpha:1, y:0, duration:.7, ease:'power3.out' })
         .to(v, { p:49.2, duration:1.1, ease:'power2.out',
                  onUpdate:()=>{ n49.textContent = v.p.toFixed(1).replace('.', ',') + '%'; } }, '<')
         .addLabel('b1')
