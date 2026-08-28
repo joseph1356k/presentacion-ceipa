@@ -14,12 +14,35 @@
     pulse:{ b0:{ state:'reposo', dur:.8 } },
     build(ctx){
       const q = ctx.q;
-      gsap.set(q('.aura'), { autoAlpha:0, scale:.94, transformOrigin:'center' });
+      /* El texto va horneado en la foto, así que la foto NUNCA rota —
+         solo respira y flota. El movimiento real vive en el destello. */
+      gsap.set(q('.aura'),  { autoAlpha:0, scale:.94, transformOrigin:'center' });
+      gsap.set(q('.aurawrap'), { y:0 });
+      gsap.set(q('.shine'), { autoAlpha:0, x:-160, y:-140, scale:.9 });
       const tl = gsap.timeline({ paused:true });
       tl.to(q('.aura'), { autoAlpha:1, scale:1, duration:1.6, ease:'power2.out' })
-        .call(()=>ctx.startLoop('breathe', ()=>
-          gsap.to(q('.aura'), { scale:1.035, duration:4.5, yoyo:true,
-                                repeat:-1, ease:'sine.inOut' })))
+        .call(()=>{
+          /* respira: la esfera late muy lento */
+          ctx.startLoop('breathe', ()=>
+            gsap.to(q('.aura'), { scale:1.035, duration:4.5, yoyo:true,
+                                  repeat:-1, ease:'sine.inOut' }));
+          /* flota: un vaivén vertical apenas perceptible */
+          ctx.startLoop('float', ()=>
+            gsap.to(q('.aurawrap'), { y:-14, duration:6, yoyo:true,
+                                      repeat:-1, ease:'sine.inOut' }));
+          /* el destello recorre la esfera en un óvalo lento — la luz se
+             mueve, la palabra Miracle nunca gira */
+          ctx.startLoop('shine', ()=>{
+            gsap.set(q('.shine'), { autoAlpha:.55 });
+            return gsap.to(q('.shine'), {
+              motionPath:{
+                path:[{x:-160,y:-140},{x:210,y:-60},{x:120,y:220},{x:-190,y:110},{x:-160,y:-140}],
+                curviness:1.4
+              },
+              duration:16, ease:'sine.inOut', repeat:-1
+            });
+          });
+        })
         .addLabel('b0');
       return tl;
     }

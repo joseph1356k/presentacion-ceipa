@@ -16,14 +16,31 @@
 .chip .cdot{ width:9px; height:9px; border-radius:50%; background:var(--line); flex:none; }
 
 /* ============ S01 · Standby ============ */
-#s01 .aura{
+/* El recorte circular vive en el wrapper; la imagen y el destello son
+   capas independientes dentro de él. Así el destello puede moverse sin
+   tocar nunca el texto, que va horneado en la foto. */
+#s01 .aurawrap{
   left:50%; top:50%; width:1180px; height:1180px;
   transform:translate(-50%,-50%);
-  mix-blend-mode:multiply;   /* funde el fondo casi blanco del PNG con la página */
-  object-fit:contain;
-  /* difumina el borde cuadrado del PNG para que el aura flote sin marco */
+  border-radius:50%; overflow:hidden;
   -webkit-mask-image:radial-gradient(closest-side, #000 58%, transparent 92%);
   mask-image:radial-gradient(closest-side, #000 58%, transparent 92%);
+}
+#s01 .aura{
+  position:absolute; inset:0; width:100%; height:100%;
+  mix-blend-mode:multiply;   /* funde el fondo casi blanco del PNG con la página */
+  object-fit:contain;
+}
+/* Destello: un óvalo de luz que se desliza por la superficie de la esfera,
+   como si algo iluminara la esfera desde un ángulo que va cambiando. */
+#s01 .shine{
+  position:absolute; left:50%; top:50%; width:70%; height:70%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.85), transparent 68%);
+  mix-blend-mode:screen;
+  opacity:0; filter:blur(4px);
+  pointer-events:none;
 }
 
 /* ============ S02 · Apertura ============ */
