@@ -48,35 +48,16 @@
     }
   });
 
-  /* ---------- S02 · Apertura ---------- */
-  DECK.register({
-    id:'s02', theme:'light',
-    pulse:{
-      b0:{ state:'pulso',   draw:true, dur:1.7, ease:'power2.inOut' },
-      b2:{ state:'trabado', dur:.65,  ease:'power3.inOut' }
-    },
-    build(ctx){
-      const q = ctx.q;
-      gsap.set(q('.l1, .l2'), UP);
-      const tl = gsap.timeline({ paused:true });
-      tl.to({}, { duration:.9 })                       /* aire para el dibujo de la línea */
-        .addLabel('b0')
-        .to(q('.l1'), Object.assign({ duration:.85 }, IN))
-        .addLabel('b1')
-        .to(q('.l2'), Object.assign({ duration:.8 }, IN))
-        .addLabel('b2');
-      return tl;
-    }
-  });
-
-  /* ---------- S03 · El dato (49,2%) ----------
+  /* ---------- S02 · El dato (49,2%) ----------
      La pila de ventanas invade el territorio derecho; el número cuenta
      hasta 49,2 mientras la interfaz se come la jornada.
      4 beats: b0 la interfaz · b1 el 49,2% · b2 el 27% · b3 la conclusión. */
   DECK.register({
-    id:'s03', theme:'light',
+    id:'s02', theme:'light',
+    /* Primera slide con contenido: aquí nace el hilo. Se dibuja vivo y
+       las ventanas lo entierran — el 49,2% hecho imagen. */
     pulse:{
-      b0:{ state:'pulso',   dur:1.0, ease:'power2.inOut' },
+      b0:{ state:'pulso',   draw:true, dur:1.7, ease:'power2.inOut' },
       b1:{ state:'apagada', dur:1.3, ease:'power2.inOut' }
     },
     build(ctx){
@@ -106,10 +87,10 @@
     }
   });
 
-  /* ---------- S04 · Una sola persona ----------
+  /* ---------- S03 · Una sola persona ----------
      Los cinco frentes de la consulta tiran de la línea hasta anudarla. */
   DECK.register({
-    id:'s04', theme:'light',
+    id:'s03', theme:'light',
     pulse:{
       b0:{ state:'tension', dur:1.15, ease:'power2.inOut' },
       b2:{ state:'nudo',    dur:1.0,  ease:'power3.inOut' }
@@ -131,23 +112,46 @@
     }
   });
 
-  /* ---------- S05 · El costo se reparte ---------- */
+  /* ---------- S04 · El costo se reparte ---------- */
   DECK.register({
-    id:'s05', theme:'light',
+    id:'s04', theme:'light',
     pulse:{ b0:{ state:'tronco', dur:1.1, ease:'power2.inOut' } },
     build(ctx){
       const q = ctx.q;
       gsap.set(q('.l1'), UP);
       gsap.set(q('.cost'), { autoAlpha:0, x:-26 });
-      gsap.set('#s05fan', { autoAlpha:1 });
-      gsap.set('#s05fan path', { autoAlpha:0, drawSVG:'0% 0%' });
+      gsap.set('#s04fan', { autoAlpha:1 });
+      gsap.set('#s04fan path', { autoAlpha:0, drawSVG:'0% 0%' });
       const tl = gsap.timeline({ paused:true });
       tl.to(q('.l1'), Object.assign({ duration:.85 }, IN))
         .addLabel('b0')
-        .to('#s05fan path', { autoAlpha:.5, drawSVG:'0% 100%', duration:.75,
+        .to('#s04fan path', { autoAlpha:.5, drawSVG:'0% 100%', duration:.75,
                               stagger:.16, ease:'power2.out' })
         .to(q('.cost'), { autoAlpha:1, x:0, duration:.6,
                           stagger:.16, ease:'power3.out' }, '-=.6')
+        .addLabel('b1');
+      return tl;
+    }
+  });
+
+  /* ---------- S05 · La contradicción ----------
+     Ya vimos el dato, la carga y el alcance: esto es el zoom out. La línea
+     se rehace entera (la medicina avanza) y tartamudea a la derecha (el día
+     a día del médico). Entrega directo a la pregunta de la s06: si la
+     medicina avanza, entonces no es que falte tecnología. */
+  DECK.register({
+    id:'s05', theme:'light',
+    pulse:{
+      b0:{ state:'pulso',   dur:1.2, ease:'power2.inOut' },
+      b1:{ state:'trabado', dur:.65, ease:'power3.inOut' }
+    },
+    build(ctx){
+      const q = ctx.q;
+      gsap.set(q('.l1, .l2'), UP);
+      const tl = gsap.timeline({ paused:true });
+      tl.to(q('.l1'), Object.assign({ duration:.85 }, IN))
+        .addLabel('b0')
+        .to(q('.l2'), Object.assign({ duration:.8 }, IN))
         .addLabel('b1');
       return tl;
     }

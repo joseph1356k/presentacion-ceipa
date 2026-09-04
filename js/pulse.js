@@ -29,7 +29,7 @@
     /* S1 — standby: la línea espera, casi apagada */
     reposo: { o:.16, d:'M-60,690 L1980,690' },
 
-    /* S5 — el tronco se detiene: el costo se reparte (abanico en #s05fan) */
+    /* S5 — el tronco se detiene: el costo se reparte (abanico en #s04fan) */
     tronco: { o:1, d:
       'M-60,636 C180,636 380,634 560,632 C640,631 690,630 726,630'
     },

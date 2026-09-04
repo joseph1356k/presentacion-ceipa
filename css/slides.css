@@ -43,81 +43,81 @@
   pointer-events:none;
 }
 
-/* ============ S02 · Apertura ============ */
-/* Apertura a escala: es la primera frase de la charla, tiene que golpear */
-#s02 .wrap{ left:160px; top:246px; max-width:1660px; }
-#s02 .l1{ font-size:118px; }
-#s02 .l2{ font-size:118px; color:var(--soft); margin-top:14px; }
-#s02 .l2 b{ color:var(--ink); font-weight:700; }
-
-/* ============ S03 · El dato (49,2%) ============
+/* ============ S02 · El dato (49,2%) ============
    Dos territorios que no se pisan. Izquierda: los datos, sobre fondo
    limpio, sin una sola tarjeta detrás. Derecha: la escena — la consulta
    comprimida por la pila de ventanas. El texto ya no compite con la UI. */
 
 /* ---- Izquierda · los datos ---- */
-#s03 .stat49{ left:160px; top:196px; }
-#s03 .stat49 .n{
+#s02 .stat49{ left:160px; top:196px; }
+#s02 .stat49 .n{
   font:700 232px/1 var(--f-display); letter-spacing:-.03em;
   color:var(--ink); font-variant-numeric:tabular-nums;
 }
-#s03 .stat49 .s{
+#s02 .stat49 .s{
   margin-top:26px; max-width:660px;
   font:400 31px/1.45 var(--f-text); color:var(--soft);
 }
-#s03 .stat27{ left:160px; top:618px; }
-#s03 .stat27 .n{
+#s02 .stat27{ left:160px; top:618px; }
+#s02 .stat27 .n{
   font:700 112px/1 var(--f-display); letter-spacing:-.02em;
   color:var(--acc); font-variant-numeric:tabular-nums;
 }
-#s03 .stat27 .s{ margin-top:10px; font:400 26px/1.4 var(--f-text); color:var(--soft); }
+#s02 .stat27 .s{ margin-top:10px; font:400 26px/1.4 var(--f-text); color:var(--soft); }
 
 /* ---- Derecha · la interfaz ----
    La pila entra desde fuera del cuadro y ocupa el territorio derecho.
    scale() sobre el contenedor: GSAP solo anima los .scr hijos. */
-#s03 .screens{
+#s02 .screens{
   right:-150px; top:132px; width:1120px; height:700px;
   transform:scale(.9); transform-origin:100% 0;
 }
-#s03 .scr{
+#s02 .scr{
   position:absolute; border-radius:14px;
   background:color-mix(in srgb, var(--ink) 7%, transparent);
   border:1px solid color-mix(in srgb, var(--ink) 20%, transparent);
   box-shadow:0 18px 44px -26px rgba(8,38,89,.5);
 }
-#s03 .scr::before{
+#s02 .scr::before{
   content:""; position:absolute; left:0; right:0; top:0; height:30px;
   border-bottom:1px solid color-mix(in srgb, var(--ink) 12%, transparent);
 }
-#s03 .scr i{
+#s02 .scr i{
   position:absolute; left:9%; height:8px; border-radius:4px;
   background:color-mix(in srgb, var(--ink) 13%, transparent);
 }
 
-#s03 .concl{ left:160px; top:906px; max-width:1720px; font-size:50px; }
-#s03 .concl b{ color:var(--acc); }
+#s02 .concl{ left:160px; top:906px; max-width:1720px; font-size:50px; }
+#s02 .concl b{ color:var(--acc); }
 /* Evidencia externa, no medición propia: fuente visible pero discreta */
-#s03 .fuente{
+#s02 .fuente{
   left:160px; top:992px;
   font:400 16px/1 var(--f-text); letter-spacing:.02em;
   color:color-mix(in srgb, var(--soft) 72%, transparent);
 }
 
-/* ============ S04 · Una sola persona ============ */
-#s04 .wrap{ left:160px; top:170px; max-width:1250px; }
-#s04 .l1{ font-size:100px; }
-#s04 .l2{ font-size:100px; color:var(--acc); margin-top:8px; }
-#s04 .st{ font-size:20px; padding:11px 22px; }
+/* ============ S03 · Una sola persona ============ */
+#s03 .wrap{ left:160px; top:170px; max-width:1250px; }
+#s03 .l1{ font-size:100px; }
+#s03 .l2{ font-size:100px; color:var(--acc); margin-top:8px; }
+#s03 .st{ font-size:20px; padding:11px 22px; }
 
-/* ============ S05 · El costo se reparte ============ */
-#s05 .wrap{ left:160px; top:190px; max-width:900px; }
-#s05 .l1{ font-size:82px; }
-#s05 .cost{
+/* ============ S04 · El costo se reparte ============ */
+#s04 .wrap{ left:160px; top:190px; max-width:900px; }
+#s04 .l1{ font-size:82px; }
+#s04 .cost{
   position:absolute; transform:translateY(-50%); width:600px;
   padding-left:30px; border-left:3px solid color-mix(in srgb, var(--line) 55%, transparent);
 }
-#s05 .ct{ font:700 34px/1 var(--f-display); color:var(--ink); letter-spacing:-.01em; }
-#s05 .cd{ font:400 23px/1.45 var(--f-text); color:var(--soft); margin-top:10px; }
+#s04 .ct{ font:700 34px/1 var(--f-display); color:var(--ink); letter-spacing:-.01em; }
+#s04 .cd{ font:400 23px/1.45 var(--f-text); color:var(--soft); margin-top:10px; }
+
+/* ============ S05 · La contradicción ============ */
+/* A escala: es la frase que resume todo el primer tercio */
+#s05 .wrap{ left:160px; top:246px; max-width:1660px; }
+#s05 .l1{ font-size:118px; }
+#s05 .l2{ font-size:118px; color:var(--soft); margin-top:14px; }
+#s05 .l2 b{ color:var(--ink); font-weight:700; }
 
 /* ============ S06 · La pregunta ============ */
 #s06 .wrap{ left:0; right:0; top:320px; text-align:center; }
