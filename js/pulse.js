@@ -26,38 +26,38 @@
 
   const STATES = {
 
-    /* S1 — standby: la línea espera, casi apagada */
+    /* s01 — standby: la línea espera, casi apagada */
     reposo: { o:.16, d:'M-60,690 L1980,690' },
 
-    /* S5 — el tronco se detiene: el costo se reparte (abanico en #s04fan) */
+    /* s04 — el tronco se detiene: el costo se reparte (abanico en #s04fan) */
     tronco: { o:1, d:
       'M-60,636 C180,636 380,634 560,632 C640,631 690,630 726,630'
     },
 
-    /* S10 — la senda por la que IÜ recorre las tareas (a la altura de su centro) */
+    /* s10 — la senda por la que IÜ recorre las tareas (a la altura de su centro) */
     senda: { o:1, d:
       'M-60,700 C240,700 420,694 700,696 C1000,698 1300,700 1560,698' +
       ' C1720,697 1860,700 1980,700'
     },
 
-    /* S12 — la línea sube a un punto de revisión y continúa */
+    /* s12 — la línea sube a un punto de revisión y continúa */
     revision: { o:1, d:
       'M-60,700 C240,700 460,698 690,696 C800,695 848,556 960,556' +
       ' C1072,556 1120,695 1230,696 C1460,698 1740,690 1980,684'
     },
 
-    /* S19 — escalera: hoy → puliendo → visión */
+    /* s19 — escalera: hoy → puliendo → visión */
     escalera: { o:1, d:
       'M-60,812 L540,812 C606,812 620,660 686,660 L1176,660' +
       ' C1242,660 1256,508 1322,508 L1980,508'
     },
 
-    /* S23 — el pulso se convierte en la sonrisa de Miracle.
+    /* s23 — el pulso se convierte en la sonrisa de Miracle.
        Ancho y grosor calcados de la proporción del logo (≈24% de caída,
        trazo ≈6% del ancho) y asentados justo bajo el wordmark. */
     sonrisa: { o:1, w:5, d:'M830,610 Q960,734 1090,610' },
 
-    /* S1 — pulso vital en calma */
+    /* s02·b0 y s05·b0 — pulso vital en calma */
     pulso: { o:1, d:
       'M-60,690 L420,690' + beat(520,690,1) +
       ' L900,690'  + beat(1000,690,1) +
@@ -65,7 +65,7 @@
       ' L1980,690'
     },
 
-    /* S1·b2 — el pulso se traba: tartamudeo irregular a la derecha */
+    /* s05·b1 — el pulso se traba: tartamudeo irregular a la derecha */
     trabado: { o:1, d:
       'M-60,690 L420,690' + beat(520,690,1) +
       ' L900,690'  + beat(1000,690,1.06) +
@@ -74,7 +74,7 @@
       ' L1620,690 L1980,690'
     },
 
-    /* S2 — tensión creciente de izquierda a derecha */
+    /* s03·b0 — tensión creciente de izquierda a derecha */
     tension: { o:1, d:
       'M-60,640 C160,640 300,634 440,640' +
       ' L520,626 L590,652 L660,630' +
@@ -84,7 +84,7 @@
       ' C1480,652 1720,648 1980,650'
     },
 
-    /* S2·b2 — el nudo en el centro-derecha */
+    /* s03·b2 — el nudo se forma: primera vez que la línea se enreda */
     nudo: { o:1, d:
       'M-60,640 C180,640 380,636 560,646 C700,654 860,662 985,640' +
       ' L1075,575 L1350,715 L1175,520 L1135,730 L1385,600' +
@@ -93,22 +93,22 @@
       ' C1470,678 1600,656 1700,652 C1800,650 1880,650 1980,650'
     },
 
-    /* S3 — el nudo, arrastrado hacia las pantallas, pierde luz */
-    apagada: { o:.34, d:
-      'M-60,834 C240,836 520,832 760,826 C920,822 1040,790 1150,730' +
-      ' L1280,640 L1500,750 L1365,595 L1330,765 L1535,660' +
-      ' L1270,685 L1480,580 L1455,770 L1305,610 L1545,725 L1250,740' +
-      ' L1400,560 L1520,750' +
-      ' C1650,730 1800,715 1980,708'
+    /* s02·b1 — enterrada: el signo vital pierde amplitud y luz a medida que
+       avanza hacia las ventanas. NO se enreda: el nudo todavía no existe,
+       se forma una slide después con los cinco frentes de la consulta. */
+    enterrada: { o:.32, d:
+      'M-60,828 L360,828' + beat(460,828,.9) +
+      ' L800,836' + beat(900,840,.38) +
+      ' L1300,848 L1600,852 L1980,854'
     },
 
-    /* S4 — una respiración: onda suave, sola en el centro */
+    /* s06 — una respiración: onda suave, sola en el centro */
     respira: { o:.42, d:
       'M-60,560 C160,560 260,542 480,542 C700,542 740,578 960,578' +
       ' C1180,578 1220,542 1440,542 C1660,542 1760,560 1980,560'
     },
 
-    /* S5 — renace: pulso pleno y seguro bajo la tesis */
+    /* s07 — renace: pulso pleno y seguro bajo la tesis */
     renace: { o:1, d:
       'M-60,876 L400,876' + beat(500,876,1.12) +
       ' L860,876'  + beat(960,876,1.2) +
@@ -116,71 +116,71 @@
       ' L1980,876'
     },
 
-    /* S6 — el pulso se endereza: línea de evolución */
+    /* s08 — el pulso se endereza: línea de evolución */
     timeline: { o:1, d:
       'M-60,620 C300,620 500,618 760,618 C1100,618 1400,616 1980,614'
     },
 
-    /* S9·b0 — separados: la línea espera abajo, todavía no conecta nada */
+    /* s09·b0 — separados: la línea espera abajo, todavía no conecta nada */
     separados: { o:.16, d:'M-60,832 L1980,832' },
 
-    /* S9·b1 — canal: la línea sube y atraviesa la capa de lado a lado */
+    /* s09·b1 — canal: la línea sube y atraviesa la capa de lado a lado */
     canal: { o:1, d:'M-60,694 L1980,694' },
 
-    /* S7 — el tejido: la línea hila médico → información → sistemas */
+    /* (sin uso) — tejido: versión previa de la s09 */
     tejido: { o:1, d:
       'M-60,540 C220,540 380,432 520,432 C680,432 780,620 960,620' +
       ' C1140,620 1240,432 1400,432 C1540,432 1720,516 1980,516'
     },
 
-    /* S8 — pipeline operativo */
+    /* s11 — pipeline operativo */
     pipeline: { o:1, d:
       'M-60,640 C400,640 900,638 1980,636'
     },
 
-    /* S9 — la línea entra al portal (termina dentro de la ventana) */
+    /* s13 — la línea entra al portal (termina dentro de la ventana) */
     portalIn: { o:1, d:
       'M-60,660 C220,660 360,646 470,630 C580,614 700,594 810,586 C870,582 910,580 942,580'
     },
 
-    /* S10 — la línea atraviesa la ventana y sale hacia los sistemas */
+    /* s14 — la línea atraviesa la ventana y sale hacia los sistemas */
     portalThrough: { o:1, d:
       'M-60,620 C260,620 400,606 540,600 L1380,596 C1560,594 1740,560 1980,540'
     },
 
-    /* S15 — la línea trepa y se instala DENTRO de la banda superior (bajo su
+    /* s15 — la línea trepa y se instala DENTRO de la banda superior (bajo su
        etiqueta). No se mueve: son las capas las que se reordenan a su
        alrededor, así que al final queda atravesando «intención». */
     capaAlta: { o:1, d:
       'M-60,720 C120,720 220,388 400,386 L1240,386 C1520,382 1740,360 1980,344'
     },
 
-    /* S12 — convergencia total: el punto */
+    /* s16 — convergencia total: el punto */
     punto: { o:1, d:
       'M948,540 C948,532 972,532 972,540 C972,548 948,548 948,540'
     },
 
-    /* S13 — el punto, sostenido a la derecha del argumento */
+    /* s17 — el punto, sostenido a la derecha del argumento */
     puntoDer: { o:1, d:
       'M1298,570 C1298,562 1322,562 1322,570 C1322,578 1298,578 1298,570'
     },
 
-    /* S14 — el ciclo */
+    /* s18 — el ciclo */
     loop: { o:1, d:
       'M960,380 C1082,380 1180,478 1180,600 C1180,722 1082,820 960,820 C838,820 740,722 740,600 C740,478 838,380 960,380'
     },
 
-    /* S15 — el tronco que se ramifica desde medicina */
+    /* s20 — el tronco que se ramifica desde medicina */
     ramas: { o:1, d:
       'M-60,620 C240,620 420,612 600,604 C760,597 860,570 950,540 C1060,503 1180,440 1330,392 C1490,341 1720,318 1980,308'
     },
 
-    /* S16 — la línea asciende atravesando las eras */
+    /* (sin uso) — la s21 esconde el hilo: se sostiene sola */
     eras: { o:1, d:
       'M-60,880 C280,880 380,864 520,856 C700,846 740,592 900,584 C1040,577 1080,364 1240,358 C1400,352 1620,320 1980,300'
     },
 
-    /* S17 — horizonte */
+    /* s21·oculto y s22 — horizonte */
     horizonte: { o:1, d:'M-60,640 L1980,640' }
   };
 

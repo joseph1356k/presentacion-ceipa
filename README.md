@@ -50,8 +50,24 @@ Si el navegador se cierra a mitad de charla, **reabrir el archivo restaura la sl
 
 **Si te alargas en las demos**, estas dos slides se pueden pasar rápido o saltar sin romper la narrativa (están marcadas como `[COMPRIMIBLE]` en el HTML):
 
-- **Slide 5** — «Y el costo no se queda en el consultorio»
-- **Slide 19** — «Preferimos decirlo con precisión»
+- **Slide 4** — «Y eso no solo le pasa al médico»
+- **Slide 19** — «Esto es lo que hay hoy, y lo que todavía no»
+
+### El arco del Acto I
+
+Abre con el problema medible y cierra con la contradicción, ya demostrada:
+
+| | | |
+|---|---|---|
+| 2 | **49,2%** | el problema, con evidencia |
+| 3 | Una sola persona | por qué pasa — la carga cognitiva |
+| 4 | Y eso no solo le pasa al médico | a quién más alcanza |
+| 5 | La medicina avanza | la contradicción, como síntesis |
+| 6 | La pregunta | ¿y si no falta tecnología…? |
+| 7 | La tesis | |
+
+La 5 entrega directo a la 6: «la medicina avanza» (tenemos tecnología) monta
+la pregunta «¿y si el problema no fuera que nos falta tecnología?».
 
 ## Las demos en vivo
 

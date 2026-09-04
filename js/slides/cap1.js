@@ -54,11 +54,12 @@
      4 beats: b0 la interfaz · b1 el 49,2% · b2 el 27% · b3 la conclusión. */
   DECK.register({
     id:'s02', theme:'light',
-    /* Primera slide con contenido: aquí nace el hilo. Se dibuja vivo y
-       las ventanas lo entierran — el 49,2% hecho imagen. */
+    /* Primera slide con contenido: aquí nace el hilo. Se dibuja vivo y se
+       va aplanando bajo las ventanas — el 49,2% hecho imagen. Sin nudo:
+       eso pasa en la s03, y verlo antes rompería el orden de la historia. */
     pulse:{
-      b0:{ state:'pulso',   draw:true, dur:1.7, ease:'power2.inOut' },
-      b1:{ state:'apagada', dur:1.3, ease:'power2.inOut' }
+      b0:{ state:'pulso',     draw:true, dur:1.7, ease:'power2.inOut' },
+      b1:{ state:'enterrada', dur:1.3, ease:'power2.inOut' }
     },
     build(ctx){
       const q = ctx.q;
